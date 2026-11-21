@@ -1,0 +1,802 @@
+<!-- ... existing code ... -->
+    <title>Matheus & Mayara - Nosso Casamento</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            600: '#334e68',
+                            700: '#243b53',
+                            800: '#102a43',
+                            900: '#0b1d3a',
+                        },
+                        serenity: {
+                            400: '#9fb3c8',
+                            500: '#bcccdc',
+                            600: '#829ab1',
+                        },
+                        rustic: {
+                            100: '#f7f4ef',
+                            200: '#ebe3d5',
+                            300: '#d6c7b2',
+                            600: '#8c7a6b',
+                            700: '#5c4d41',
+                        },
+                        cream: '#fcfbf9'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        cursive: ['Great Vibes', 'cursive'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        .font-cursive {
+            font-family: 'Great Vibes', cursive;
+        }
+        .bg-hero {
+            background-image: linear-gradient(rgba(11, 29, 58, 0.65), rgba(11, 29, 58, 0.75)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .rustic-border {
+            border: 2px dashed #d6c7b2;
+        }
+    </style>
+</head>
+<body class="bg-cream text-navy-800 font-sans antialiased selection:bg-navy-700 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="fixed w-full bg-white/95 backdrop-blur-md z-40 shadow-sm border-b border-navy-100 transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#inicio" class="font-serif text-2xl font-bold text-navy-800 tracking-wide">M & M</a>
+            
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-navy-700">
+                <a href="#inicio" class="hover:text-serenity-600 transition-colors">Início</a>
+                <a href="#historia" class="hover:text-serenity-600 transition-colors">Nossa História</a>
+                <a href="#local" class="hover:text-serenity-600 transition-colors">O Casamento</a>
+                <a href="#presentes" class="hover:text-serenity-600 transition-colors">Lista de Presentes</a>
+                <a href="#rsvp" class="hover:text-serenity-600 transition-colors">RSVP</a>
+            </nav>
+
+            <button onclick="openAdminModal()" class="text-xs border border-navy-600 text-navy-700 px-3.5 py-1.5 rounded-full hover:bg-navy-800 hover:text-white transition-colors flex items-center space-x-1.5 shadow-sm">
+                <i class="fa-solid fa-lock text-xs"></i>
+                <span>Painel dos Noivos</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="min-h-screen bg-hero flex items-center justify-center text-center text-white relative px-4 pt-16">
+        <div class="max-w-3xl mx-auto space-y-6">
+            <div class="inline-block px-4 py-1 border-t border-b border-serenity-400 text-xs md:text-sm font-light tracking-widest uppercase text-serenity-400">
+                Com a bênção de nossas famílias
+            </div>
+            <h1 class="font-cursive text-6xl md:text-9xl text-white py-2 drop-shadow-md">Matheus & Mayara</h1>
+            <div class="w-24 h-0.5 bg-serenity-400 mx-auto"></div>
+            <p class="font-serif text-2xl md:text-3xl italic font-light tracking-wide text-navy-50">11 de Março de 2028</p>
+
+            <!-- Countdown Timer -->
+            <div class="pt-8 grid grid-cols-4 gap-2 md:gap-4 max-w-lg mx-auto" id="countdown">
+                <div class="bg-navy-900/80 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-serenity-400/30">
+                    <span id="days" class="font-serif text-2xl md:text-4xl font-bold text-serenity-400">00</span>
+                    <span class="block text-xs uppercase tracking-wider text-gray-300 mt-1">Dias</span>
+                </div>
+                <div class="bg-navy-900/80 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-serenity-400/30">
+                    <span id="hours" class="font-serif text-2xl md:text-4xl font-bold text-serenity-400">00</span>
+                    <span class="block text-xs uppercase tracking-wider text-gray-300 mt-1">Horas</span>
+                </div>
+                <div class="bg-navy-900/80 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-serenity-400/30">
+                    <span id="minutes" class="font-serif text-2xl md:text-4xl font-bold text-serenity-400">00</span>
+                    <span class="block text-xs uppercase tracking-wider text-gray-300 mt-1">Min</span>
+                </div>
+                <div class="bg-navy-900/80 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-serenity-400/30">
+                    <span id="seconds" class="font-serif text-2xl md:text-4xl font-bold text-serenity-400">00</span>
+                    <span class="block text-xs uppercase tracking-wider text-gray-300 mt-1">Seg</span>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#rsvp" class="bg-navy-700 hover:bg-navy-800 text-white font-medium px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 border border-serenity-400/40">
+                    Confirmar Presença
+                </a>
+                <a href="https://share.google/VOy2bXO7vjud3iTpL" target="_blank" class="bg-white/10 hover:bg-white/20 text-white backdrop-blur-md font-medium px-6 py-3.5 rounded-full shadow-lg transition-all flex items-center space-x-2 border border-white/30">
+                    <i class="fa-solid fa-location-dot text-serenity-400"></i>
+                    <span>Ver Localização</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa História -->
+    <section id="historia" class="py-20 px-4 max-w-4xl mx-auto text-center relative">
+        <div class="w-12 h-12 bg-navy-50 text-navy-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-serenity-400">
+            <i class="fa-solid fa-heart text-lg text-navy-600"></i>
+        </div>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800 mb-4">Nossa História</h2>
+        <div class="w-16 h-0.5 bg-serenity-600 mx-auto mb-8"></div>
+        <p class="text-navy-700 leading-relaxed text-base md:text-lg mb-6">
+            O amor verdadeiro se constrói nos pequenos detalhes do dia a dia. Escolhemos caminhar juntos, dividindo sonhos, conquistas e os melhores sorrisos. 
+        </p>
+        <p class="text-navy-700 leading-relaxed text-base md:text-lg italic font-serif">
+            "O amor tudo sofre, tudo crê, tudo espera, tudo suporta." — 1 Coríntios 13:7
+        </p>
+    </section>
+
+    <!-- Localização e Informações do Evento -->
+    <section id="local" class="py-20 bg-rustic-100 px-4 border-y border-rustic-200">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-navy-600 font-medium uppercase text-xs tracking-widest">Informações Importantes</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800 mt-2">O Casamento</h2>
+                <div class="w-16 h-0.5 bg-serenity-600 mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                <!-- Card de Cerimônia & Recepção -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-navy-100 flex flex-col justify-between text-center">
+                    <div>
+                        <div class="w-14 h-14 bg-navy-50 text-navy-700 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl border border-serenity-400/40">
+                            <i class="fa-solid fa-church"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold mb-3 text-navy-800">Cerimônia & Festa</h3>
+                        <p class="text-navy-600 font-medium mb-1">Local do Evento</p>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            A cerimônia e a recepção serão realizadas no mesmo local. Clique no botão abaixo para abrir o mapa com o itinerário completo.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="inline-flex items-center justify-center bg-navy-50 text-navy-800 text-sm px-4 py-2 rounded-xl font-medium border border-navy-100 w-full">
+                            <i class="fa-regular fa-calendar mr-2 text-navy-600"></i>11 de Março de 2028 às 16:30 hrs
+                        </div>
+                        <a href="https://share.google/VOy2bXO7vjud3iTpL" target="_blank" class="w-full bg-navy-700 hover:bg-navy-800 text-white font-medium py-3 rounded-xl transition-all flex items-center justify-center space-x-2 shadow-md">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span>Abrir Endereço no GPS</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Traje e Recomendações -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-navy-100 flex flex-col justify-between text-center">
+                    <div>
+                        <div class="w-14 h-14 bg-navy-50 text-navy-700 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl border border-serenity-400/40">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold mb-3 text-navy-800">Traje Recomendado</h3>
+                        <p class="text-navy-600 font-medium mb-1">Passeio Completo / Traje Social</p>
+                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                            A paleta oficial do casamento é **Azul e Branco**. Pedimos gentilmente que os convidados evitem a cor branca para dar destaque exclusivo à noiva.
+                        </p>
+                    </div>
+
+                    <div class="bg-rustic-100 p-4 rounded-2xl border border-rustic-200">
+                        <p class="text-xs text-rustic-700 font-medium">Dica de Estilo: Rústico Chic</p>
+                        <p class="text-xs text-rustic-600 mt-1">Homens: Terno clássico ou costume. Mulheres: Vestidos longos ou midi elegantes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lista de Presentes & Contribuições -->
+    <section id="presentes" class="py-20 bg-cream px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-navy-600 font-medium uppercase text-xs tracking-widest">Sua generosidade é bem-vinda</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800 mt-2">Lista de Presentes & Contribuições</h2>
+                <p class="text-navy-600 max-w-2xl mx-auto text-sm mt-2">Você pode escolher um presente específico da nossa lista virtual ou fazer uma contribuição livre de qualquer valor.</p>
+                <div class="w-16 h-0.5 bg-serenity-600 mx-auto mt-4"></div>
+            </div>
+
+            <!-- Modalidade 2: Vaquinha / PIX / Cartão (Destaque Principal) -->
+            <div class="bg-gradient-to-br from-navy-800 to-navy-900 text-white rounded-3xl p-8 md:p-10 mb-16 shadow-xl border border-navy-700">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <span class="inline-block bg-serenity-400/20 text-serenity-400 text-xs px-3 py-1 rounded-full font-medium mb-4 uppercase tracking-wider">Contribuição Livre</span>
+                        <h3 class="font-serif text-3xl font-bold mb-3">Vaquinha para Lua de Mel & Enxoval</h3>
+                        <p class="text-navy-100 text-sm leading-relaxed mb-6">
+                            Prefere nos apoiar com qualquer valor de sua preferência? Aceitamos contribuição direta via **PIX** ou **Cartão de Crédito**.
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="openVaquinhaModal()" class="bg-serenity-500 hover:bg-serenity-600 text-navy-900 font-semibold px-6 py-3 rounded-xl transition-all shadow-md flex items-center space-x-2">
+                                <i class="fa-solid fa-qrcode"></i>
+                                <span>Contribuir via PIX</span>
+                            </button>
+                            <button onclick="openCardModal()" class="bg-white/10 hover:bg-white/20 text-white font-medium px-6 py-3 rounded-xl transition-all border border-white/20 flex items-center space-x-2">
+                                <i class="fa-regular fa-credit-card"></i>
+                                <span>Pagar no Cartão</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+                        <i class="fa-solid fa-plane-departure text-4xl text-serenity-400 mb-3"></i>
+                        <h4 class="font-serif text-xl font-semibold mb-1">Destino: Lua de Mel dos Sonhos</h4>
+                        <p class="text-xs text-navy-200">Toda contribuição nos ajudará a vivenciar momentos inesquecíveis no início da nossa vida a dois.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modalidade 1: Lista de Presentes Virtuais -->
+            <h3 class="font-serif text-2xl font-bold text-navy-800 mb-6 text-center">Presentes Virtuais Sugeridos</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Presente 1 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-navy-100 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div>
+                        <div class="h-40 bg-navy-50 rounded-xl mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=600&q=80" alt="Cafeteira Espresso" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-bold text-navy-800 text-lg mb-1">Cafeteira Espresso Modern</h4>
+                        <p class="text-xs text-navy-600 mb-4">Para os cafés matinais dos noivos.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-3 border-t border-gray-100">
+                        <span class="font-bold text-navy-800">R$ 350,00</span>
+                        <button onclick="openGiftModal('Cafeteira Espresso Modern', '350,00')" class="bg-navy-700 hover:bg-navy-800 text-white text-xs font-medium px-3.5 py-2 rounded-lg transition-colors">
+                            Presentear
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Presente 2 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-navy-100 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div>
+                        <div class="h-40 bg-navy-50 rounded-xl mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Jantar Romântico" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-bold text-navy-800 text-lg mb-1">Jantar à Beira-Mar</h4>
+                        <p class="text-xs text-navy-600 mb-4">Experiência gastronômica na lua de mel.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-3 border-t border-gray-100">
+                        <span class="font-bold text-navy-800">R$ 200,00</span>
+                        <button onclick="openGiftModal('Jantar à Beira-Mar', '200,00')" class="bg-navy-700 hover:bg-navy-800 text-white text-xs font-medium px-3.5 py-2 rounded-lg transition-colors">
+                            Presentear
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Presente 3 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-navy-100 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div>
+                        <div class="h-40 bg-navy-50 rounded-xl mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=600&q=80" alt="Jogo de Panelas" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-bold text-navy-800 text-lg mb-1">Jogo de Panelas Antiaderentes</h4>
+                        <p class="text-xs text-navy-600 mb-4">Essencial para a cozinha da casa nova.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-3 border-t border-gray-100">
+                        <span class="font-bold text-navy-800">R$ 480,00</span>
+                        <button onclick="openGiftModal('Jogo de Panelas Antiaderentes', '480,00')" class="bg-navy-700 hover:bg-navy-800 text-white text-xs font-medium px-3.5 py-2 rounded-lg transition-colors">
+                            Presentear
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Presente 4 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-navy-100 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div>
+                        <div class="h-40 bg-navy-50 rounded-xl mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Passeio Turístico" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-serif font-bold text-navy-800 text-lg mb-1">Passeio Ecológico na Lua de Mel</h4>
+                        <p class="text-xs text-navy-600 mb-4">Cota para passeio inesquecível.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-3 border-t border-gray-100">
+                        <span class="font-bold text-navy-800">R$ 180,00</span>
+                        <button onclick="openGiftModal('Passeio Ecológico na Lua de Mel', '180,00')" class="bg-navy-700 hover:bg-navy-800 text-white text-xs font-medium px-3.5 py-2 rounded-lg transition-colors">
+                            Presentear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP / Confirmação de Presença -->
+    <section id="rsvp" class="py-20 px-4 max-w-3xl mx-auto">
+        <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-navy-100 relative">
+            <div class="text-center mb-8">
+                <span class="text-navy-600 font-medium uppercase text-xs tracking-widest">Confirmação de Presença</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800 mt-2">RSVP</h2>
+                <p class="text-navy-600 text-xs mt-2">Por favor, confirme sua presença para organizarmos tudo com carinho.</p>
+                <div class="w-16 h-0.5 bg-serenity-600 mx-auto mt-4"></div>
+            </div>
+
+            <form id="rsvpForm" onsubmit="submitRSVP(event)" class="space-y-6">
+                <div>
+                    <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Nome Completo *</label>
+                    <input type="text" id="rsvpName" required placeholder="Digite seu nome completo" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-600 text-sm">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">E-mail *</label>
+                        <input type="email" id="rsvpEmail" required placeholder="seu@email.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-600 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Telefone / WhatsApp *</label>
+                        <input type="tel" id="rsvpPhone" required placeholder="(00) 00000-0000" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-600 text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Você irá ao casamento? *</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="flex items-center justify-center p-3.5 border rounded-xl cursor-pointer hover:bg-navy-50 transition-colors border-gray-200">
+                            <input type="radio" name="attending" value="sim" checked onclick="toggleGuests(true)" class="text-navy-700 focus:ring-navy-700">
+                            <span class="ml-2 font-medium text-sm text-navy-800">Sim, estarei lá!</span>
+                        </label>
+                        <label class="flex items-center justify-center p-3.5 border rounded-xl cursor-pointer hover:bg-navy-50 transition-colors border-gray-200">
+                            <input type="radio" name="attending" value="nao" onclick="toggleGuests(false)" class="text-navy-700 focus:ring-navy-700">
+                            <span class="ml-2 font-medium text-sm text-navy-800">Não poderei ir</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="guestsContainer" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Quantidade de Acompanhantes</label>
+                        <select id="guestCount" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-600 text-sm">
+                            <option value="0">Apenas eu</option>
+                            <option value="1">1 Acompanhante</option>
+                            <option value="2">2 Acompanhantes</option>
+                            <option value="3">3 Acompanhantes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Nome(s) do(s) Acompanhante(s)</label>
+                        <input type="text" id="guestNames" placeholder="Ex: Ana Souza, Pedro Alves" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-600 text-sm">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-medium py-3.5 rounded-xl shadow-md transition-all">
+                    Enviar Confirmação
+                </button>
+            </form>
+
+            <div id="rsvpSuccess" class="hidden text-center py-8">
+                <i class="fa-solid fa-circle-check text-5xl text-green-600 mb-4"></i>
+                <h3 class="font-serif text-2xl font-bold text-navy-800">Confirmação Recebida!</h3>
+                <p class="text-navy-600 text-sm mt-2">Agradecemos por responder. Sua presença faz toda a diferença!</p>
+                <button onclick="resetRSVPForm()" class="mt-6 text-xs text-navy-700 underline font-medium">Enviar nova confirmação</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 text-white py-12 text-center border-t border-navy-800">
+        <h3 class="font-cursive text-5xl text-serenity-400 mb-2">Matheus & Mayara</h3>
+        <p class="text-xs text-navy-200 uppercase tracking-widest mb-4">11 . 03 . 2028</p>
+        <p class="text-xs text-navy-300">Desenvolvido especialmente para celebrar a união de Matheus & Mayara.</p>
+    </footer>
+
+    <!-- MODAL PRESENTES / PIX SPECIFICO -->
+    <div id="giftModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 text-center relative shadow-2xl">
+            <button onclick="closeGiftModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="w-12 h-12 bg-navy-50 text-navy-700 rounded-full flex items-center justify-center mx-auto mb-3 text-xl border border-serenity-400/40">
+                <i class="fa-solid fa-gift"></i>
+            </div>
+            
+            <h3 class="font-serif text-2xl font-bold text-navy-800 mb-1" id="modalGiftTitle">Presente</h3>
+            <p class="text-sm text-navy-600 mb-4">Valor sugestivo: <span id="modalGiftPrice" class="font-bold text-navy-800">R$ 0,00</span></p>
+
+            <div class="bg-navy-50 p-4 rounded-2xl mb-4 border border-navy-100">
+                <div class="w-36 h-36 bg-white mx-auto p-2 rounded-xl shadow-inner flex items-center justify-center mb-3">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <rect x="0" y="0" width="100" height="100" fill="white" />
+                        <path d="M10 10 h30 v30 h-30 z M15 15 v20 h20 v-20 z M20 20 h10 v10 h-10 z" fill="#102a43" />
+                        <path d="M60 10 h30 v30 h-30 z M65 15 v20 h20 v-20 z M70 20 h10 v10 h-10 z" fill="#102a43" />
+                        <path d="M10 60 h30 v30 h-30 z M15 65 v20 h20 v-20 z M20 70 h10 v10 h-10 z" fill="#102a43" />
+                        <rect x="50" y="50" width="10" height="10" fill="#102a43" />
+                        <rect x="70" y="50" width="15" height="10" fill="#102a43" />
+                        <rect x="50" y="70" width="10" height="20" fill="#102a43" />
+                    </svg>
+                </div>
+                <p class="text-xs text-navy-600 mb-2">Escaneie o QR Code ou copie a chave PIX abaixo:</p>
+                <div class="flex items-center space-x-2 bg-white border rounded-xl p-2">
+                    <input type="text" id="pixKeyGift" readonly value="matheusemayara2028@gmail.com" class="w-full text-xs font-mono text-gray-600 bg-transparent outline-none">
+                    <button onclick="copyPix('pixKeyGift')" class="bg-navy-700 hover:bg-navy-800 text-white text-xs px-3 py-1.5 rounded-lg transition-colors">
+                        Copiar
+                    </button>
+                </div>
+            </div>
+            <p id="copyAlertGift" class="text-xs text-green-600 hidden font-medium">Chave PIX copiada com sucesso!</p>
+        </div>
+    </div>
+
+    <!-- MODAL VAQUINHA / PIX LIVRE -->
+    <div id="vaquinhaModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 text-center relative shadow-2xl">
+            <button onclick="closeVaquinhaModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="font-serif text-2xl font-bold text-navy-800 mb-2">Contribuição Livre via PIX</h3>
+            <p class="text-xs text-navy-600 mb-4">Escolha o valor que deseja enviar diretamente para a conta do casal.</p>
+
+            <div class="bg-rustic-100 p-4 rounded-2xl mb-4 border border-rustic-200">
+                <div class="flex items-center space-x-2 bg-white border rounded-xl p-2 mb-3">
+                    <span class="text-xs text-gray-500 font-mono">PIX:</span>
+                    <input type="text" id="pixKeyFree" readonly value="matheusemayara2028@gmail.com" class="w-full text-xs font-mono text-gray-700 bg-transparent outline-none">
+                    <button onclick="copyPix('pixKeyFree')" class="bg-navy-700 hover:bg-navy-800 text-white text-xs px-3 py-1.5 rounded-lg transition-colors">
+                        Copiar
+                    </button>
+                </div>
+                <p id="copyAlertFree" class="text-xs text-green-600 hidden font-medium mb-2">Chave PIX copiada!</p>
+                <p class="text-xs text-gray-500">Banco: Itaú | Nome: Matheus & Mayara</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CARTÃO DE CRÉDITO (CHECKOUT INTEGRADO SIMULADO) -->
+    <div id="cardModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closeCardModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-6">
+                <i class="fa-regular fa-credit-card text-3xl text-navy-700 mb-2"></i>
+                <h3 class="font-serif text-2xl font-bold text-navy-800">Pagamento no Cartão</h3>
+                <p class="text-xs text-navy-600">Checkout Seguro via Stripe (Simulação)</p>
+            </div>
+
+            <form onsubmit="submitCardPayment(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-navy-800 mb-1">Valor da Contribuição (R$)</label>
+                    <input type="number" required min="10" placeholder="100,00" class="w-full px-3 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-navy-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-navy-800 mb-1">Nome no Cartão</label>
+                    <input type="text" required placeholder="Nome igual ao cartão" class="w-full px-3 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-navy-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-navy-800 mb-1">Número do Cartão</label>
+                    <input type="text" required placeholder="0000 0000 0000 0000" class="w-full px-3 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-navy-600">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-navy-800 mb-1">Validade</label>
+                        <input type="text" placeholder="MM/AA" required class="w-full px-3 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-navy-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-navy-800 mb-1">CVV</label>
+                        <input type="text" placeholder="123" required class="w-full px-3 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-navy-600">
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-medium py-3 rounded-xl shadow-md transition-all text-sm mt-2">
+                    Finalizar Pagamento Seguro
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL PAINEL NOIVOS (ADMIN) -->
+    <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-4xl w-full p-6 md:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Login Admin -->
+            <div id="adminLogin" class="py-8 text-center max-w-sm mx-auto">
+                <div class="w-12 h-12 bg-navy-50 text-navy-800 rounded-full flex items-center justify-center mx-auto mb-4 text-xl border">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="font-serif text-2xl font-bold text-navy-800 mb-2">Painel de Acompanhamento</h3>
+                <p class="text-xs text-navy-600 mb-6">Digite a senha dos noivos para ver o relatório de presenças (Senha: 1234)</p>
+                <input type="password" id="adminPassword" placeholder="Senha" class="w-full px-4 py-3 border rounded-xl mb-4 text-center text-lg outline-none focus:ring-2 focus:ring-navy-600">
+                <button onclick="checkAdminPassword()" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-medium py-3 rounded-xl transition-colors text-sm">
+                    Acessar Painel
+                </button>
+                <p id="adminError" class="text-xs text-red-500 mt-2 hidden">Senha incorreta. Tente "1234".</p>
+            </div>
+
+            <!-- Dashboard Admin -->
+            <div id="adminDashboard" class="hidden">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-4 mb-6">
+                    <div>
+                        <h3 class="font-serif text-2xl font-bold text-navy-800">Relatório de Convidados</h3>
+                        <p class="text-xs text-navy-600">Confirmações de presença recebidas pelo site</p>
+                    </div>
+                    <div class="mt-4 sm:mt-0 space-x-2">
+                        <button onclick="exportCSV()" class="bg-green-700 hover:bg-green-800 text-white text-xs px-4 py-2 rounded-lg font-medium transition-colors">
+                            <i class="fa-solid fa-file-excel mr-1"></i> Exportar CSV
+                        </button>
+                        <button onclick="logoutAdmin()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs px-3 py-2 rounded-lg transition-colors">
+                            Sair
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Métricas -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-navy-50 p-4 rounded-xl border border-navy-100">
+                        <span class="block text-xs text-navy-600">Total Respostas</span>
+                        <span id="metricTotal" class="text-2xl font-bold text-navy-800">0</span>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-xl border border-green-100">
+                        <span class="block text-xs text-green-700">Confirmados</span>
+                        <span id="metricConfirmed" class="text-2xl font-bold text-green-800">0</span>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-xl border border-red-100">
+                        <span class="block text-xs text-red-700">Recusados</span>
+                        <span id="metricDeclined" class="text-2xl font-bold text-red-800">0</span>
+                    </div>
+                    <div class="bg-serenity-500/10 p-4 rounded-xl border border-serenity-400/20">
+                        <span class="block text-xs text-navy-700">Total de Pessoas</span>
+                        <span id="metricTotalPeople" class="text-2xl font-bold text-navy-800">0</span>
+                    </div>
+                </div>
+
+                <!-- Tabela -->
+                <div class="overflow-x-auto border rounded-xl">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-navy-50 text-navy-800 font-semibold uppercase border-b">
+                            <tr>
+                                <th class="p-3">Data</th>
+                                <th class="p-3">Nome</th>
+                                <th class="p-3">Contato</th>
+                                <th class="p-3">Status</th>
+                                <th class="p-3">Acompanhantes</th>
+                                <th class="p-3 text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminTableBody" class="divide-y divide-gray-100 text-navy-700">
+                            <!-- Inserido dinamicamente via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Data do Casamento: 11 de Março de 2028
+        const weddingDate = new Date('2028-03-11T16:30:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = weddingDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        function toggleGuests(show) {
+            const container = document.getElementById('guestsContainer');
+            if (show) {
+                container.classList.remove('hidden');
+            } else {
+                container.classList.add('hidden');
+            }
+        }
+
+        function getRSVPData() {
+            return JSON.parse(localStorage.getItem('wedding_rsvps_mm')) || [];
+        }
+
+        function saveRSVPData(data) {
+            localStorage.setItem('wedding_rsvps_mm', JSON.stringify(data));
+        }
+
+        function submitRSVP(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('rsvpName').value.trim();
+            const email = document.getElementById('rsvpEmail').value.trim();
+            const phone = document.getElementById('rsvpPhone').value.trim();
+            const attending = document.querySelector('input[name="attending"]:checked').value;
+            const guestCount = attending === 'sim' ? parseInt(document.getElementById('guestCount').value) : 0;
+            const guestNames = attending === 'sim' ? document.getElementById('guestNames').value.trim() : '';
+
+            const newEntry = {
+                id: Date.now(),
+                date: new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'}),
+                name,
+                email,
+                phone,
+                attending,
+                guestCount,
+                guestNames
+            };
+
+            const currentData = getRSVPData();
+            currentData.push(newEntry);
+            saveRSVPData(currentData);
+
+            document.getElementById('rsvpForm').classList.add('hidden');
+            document.getElementById('rsvpSuccess').classList.remove('hidden');
+        }
+
+        function resetRSVPForm() {
+            document.getElementById('rsvpForm').reset();
+            document.getElementById('rsvpForm').classList.remove('hidden');
+            document.getElementById('rsvpSuccess').classList.add('hidden');
+            toggleGuests(true);
+        }
+
+        // Modais de Presente e Vaquinha
+        function openGiftModal(title, price) {
+            document.getElementById('modalGiftTitle').innerText = title;
+            document.getElementById('modalGiftPrice').innerText = 'R$ ' + price;
+            document.getElementById('copyAlertGift').classList.add('hidden');
+            document.getElementById('giftModal').classList.remove('hidden');
+        }
+
+        function closeGiftModal() {
+            document.getElementById('giftModal').classList.add('hidden');
+        }
+
+        function openVaquinhaModal() {
+            document.getElementById('vaquinhaModal').classList.remove('hidden');
+        }
+
+        function closeVaquinhaModal() {
+            document.getElementById('vaquinhaModal').classList.add('hidden');
+        }
+
+        function openCardModal() {
+            document.getElementById('cardModal').classList.remove('hidden');
+        }
+
+        function closeCardModal() {
+            document.getElementById('cardModal').classList.add('hidden');
+        }
+
+        function submitCardPayment(e) {
+            e.preventDefault();
+            alert('Obrigado pela sua contribuição! Seu pagamento com cartão foi simulado com sucesso.');
+            closeCardModal();
+        }
+
+        function copyPix(inputId) {
+            const copyText = document.getElementById(inputId);
+            copyText.select();
+            document.execCommand('copy');
+            
+            const alertElem = inputId === 'pixKeyGift' ? document.getElementById('copyAlertGift') : document.getElementById('copyAlertFree');
+            alertElem.classList.remove('hidden');
+            setTimeout(() => {
+                alertElem.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Admin Modal
+        function openAdminModal() {
+            document.getElementById('adminModal').classList.remove('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.add('hidden');
+        }
+
+        function checkAdminPassword() {
+            const pass = document.getElementById('adminPassword').value;
+            if (pass === '1234') {
+                document.getElementById('adminLogin').classList.add('hidden');
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                renderAdminDashboard();
+            } else {
+                document.getElementById('adminError').classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('adminDashboard').classList.add('hidden');
+            document.getElementById('adminLogin').classList.remove('hidden');
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('adminError').classList.add('hidden');
+        }
+
+        function renderAdminDashboard() {
+            const rsvps = getRSVPData();
+            const tbody = document.getElementById('adminTableBody');
+            tbody.innerHTML = '';
+
+            let confirmed = 0;
+            let declined = 0;
+            let totalPeople = 0;
+
+            rsvps.forEach((item) => {
+                if (item.attending === 'sim') {
+                    confirmed++;
+                    totalPeople += (1 + parseInt(item.guestCount || 0));
+                } else {
+                    declined++;
+                }
+
+                const tr = document.createElement('tr');
+                tr.className = 'border-b hover:bg-gray-50';
+                tr.innerHTML = `
+                    <td class="p-3 text-gray-500">${item.date}</td>
+                    <td class="p-3 font-semibold">${item.name}</td>
+                    <td class="p-3">${item.phone}<br><span class="text-gray-400">${item.email}</span></td>
+                    <td class="p-3">
+                        <span class="px-2 py-1 rounded-full text-xs font-semibold ${item.attending === 'sim' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
+                            ${item.attending === 'sim' ? 'Confirmado' : 'Recusado'}
+                        </span>
+                    </td>
+                    <td class="p-3">${item.attending === 'sim' ? `${item.guestCount} (${item.guestNames || 'Nenhum'})` : '-'}</td>
+                    <td class="p-3 text-center">
+                        <button onclick="deleteEntry(${item.id})" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('metricTotal').innerText = rsvps.length;
+            document.getElementById('metricConfirmed').innerText = confirmed;
+            document.getElementById('metricDeclined').innerText = declined;
+            document.getElementById('metricTotalPeople').innerText = totalPeople;
+        }
+
+        function deleteEntry(id) {
+            let data = getRSVPData();
+            data = data.filter(item => item.id !== id);
+            saveRSVPData(data);
+            renderAdminDashboard();
+        }
+
+        function exportCSV() {
+            const data = getRSVPData();
+            if (data.length === 0) {
+                alert('Não há confirmações cadastradas.');
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,Data,Nome,Email,Telefone,Status,Qtd Acompanhantes,Nomes Acompanhantes\n";
+
+            data.forEach(item => {
+                const row = [
+                    `"${item.date}"`,
+                    `"${item.name}"`,
+                    `"${item.email}"`,
+                    `"${item.phone}"`,
+                    `"${item.attending === 'sim' ? 'Confirmado' : 'Recusado'}"`,
+                    `"${item.guestCount}"`,
+                    `"${item.guestNames || ''}"`
+                ].join(",");
+                csvContent += row + "\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "confirmacoes_matheus_mayara.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
