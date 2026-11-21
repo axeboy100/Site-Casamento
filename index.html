@@ -1,5 +1,12 @@
-<!-- ... existing code ... -->
-    <title>Matheus & Mayara - Nosso Casamento</title>
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Versão do Site: v1.5 -->
+    <title>Matheus &amp; Mayara — Nosso Casamento | 11.03.2028 (v1.5)</title>
+    <meta name="description" content="Celebre conosco o casamento de Matheus e Mayara no dia 11 de Março de 2028 na Chácara São Cristóvão. Confirme sua presença até 11 de fevereiro de 2028.">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -10,20 +17,27 @@
                         navy: {
                             50: '#f0f4f8',
                             100: '#d9e2ec',
+                            200: '#bcccdc',
                             600: '#334e68',
                             700: '#243b53',
                             800: '#102a43',
                             900: '#0b1d3a',
+                            950: '#061224',
                         },
                         serenity: {
+                            100: '#eef4fa',
+                            200: '#d6e4f0',
+                            300: '#b8cde0',
                             400: '#9fb3c8',
-                            500: '#bcccdc',
-                            600: '#829ab1',
+                            500: '#8da9c4',
+                            600: '#6f8fae',
                         },
                         rustic: {
+                            50: '#fbf9f5',
                             100: '#f7f4ef',
                             200: '#ebe3d5',
                             300: '#d6c7b2',
+                            500: '#a6927d',
                             600: '#8c7a6b',
                             700: '#5c4d41',
                         },
@@ -38,575 +52,1337 @@
             }
         }
     </script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
+
+    <!-- Font Awesome Icons 6.5.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts: Playfair Display, Great Vibes & Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
     <style>
         .font-cursive {
             font-family: 'Great Vibes', cursive;
         }
-        .bg-hero {
-            background-image: linear-gradient(rgba(11, 29, 58, 0.65), rgba(11, 29, 58, 0.75)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80');
-            background-size: cover;
-            background-position: center;
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
-        .rustic-border {
-            border: 2px dashed #d6c7b2;
+        .modal-animate {
+            animation: fadeInScale 0.25s ease-out forwards;
         }
     </style>
 </head>
-<body class="bg-cream text-navy-800 font-sans antialiased selection:bg-navy-700 selection:text-white">
+<body class="bg-cream text-navy-800 font-sans antialiased selection:bg-navy-800 selection:text-white overflow-x-hidden">
 
-    <!-- Header Navigation -->
-    <header class="fixed w-full bg-white/95 backdrop-blur-md z-40 shadow-sm border-b border-navy-100 transition-all duration-300" id="navbar">
+    <!-- Toast de Notificação Elegante (Substitui alert()) -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+    <!-- ===================================================================== -->
+    <!-- HEADER FIXO DE NAVEGAÇÃO                                              -->
+    <!-- ===================================================================== -->
+    <header class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md z-40 shadow-sm border-b border-navy-100 transition-all duration-300" id="navbar">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#inicio" class="font-serif text-2xl font-bold text-navy-800 tracking-wide">M & M</a>
-            
-            <nav class="hidden md:flex space-x-8 text-sm font-medium text-navy-700">
+            <a href="#inicio" class="flex items-center space-x-2 group">
+                <span class="font-serif text-xl sm:text-2xl font-bold text-navy-800 tracking-wider group-hover:text-serenity-600 transition-colors">M &amp; M</span>
+                <span class="hidden sm:inline-block text-[11px] uppercase tracking-[0.2em] text-serenity-600 border-l border-navy-200 pl-2">11.03.2028</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex space-x-7 text-sm font-medium text-navy-700">
                 <a href="#inicio" class="hover:text-serenity-600 transition-colors">Início</a>
                 <a href="#historia" class="hover:text-serenity-600 transition-colors">Nossa História</a>
-                <a href="#local" class="hover:text-serenity-600 transition-colors">O Casamento</a>
-                <a href="#presentes" class="hover:text-serenity-600 transition-colors">Lista de Presentes</a>
-                <a href="#rsvp" class="hover:text-serenity-600 transition-colors">RSVP</a>
+                <a href="#rsvp" class="hover:text-serenity-600 transition-colors">Confirmar Presença</a>
+                <a href="#presentes" class="hover:text-serenity-600 transition-colors">Presentes</a>
+                <a href="#local" class="hover:text-serenity-600 transition-colors">Local</a>
             </nav>
 
-            <button onclick="openAdminModal()" class="text-xs border border-navy-600 text-navy-700 px-3.5 py-1.5 rounded-full hover:bg-navy-800 hover:text-white transition-colors flex items-center space-x-1.5 shadow-sm">
-                <i class="fa-solid fa-lock text-xs"></i>
-                <span>Painel dos Noivos</span>
-            </button>
+            <div class="flex items-center space-x-2.5">
+                <button type="button" onclick="openAdminModal()" class="text-xs border border-navy-700 text-navy-800 px-3.5 py-2 rounded-full hover:bg-navy-800 hover:text-white transition-all flex items-center space-x-1.5 shadow-sm font-medium">
+                    <i class="fa-solid fa-lock text-[11px]"></i>
+                    <span>Painel dos Noivos</span>
+                </button>
+
+                <!-- Mobile Hamburger Button -->
+                <button type="button" onclick="toggleMobileMenu()" aria-label="Abrir Menu" class="md:hidden w-9 h-9 rounded-full border border-navy-100 flex items-center justify-center text-navy-800 hover:bg-navy-50">
+                    <i class="fa-solid fa-bars" id="mobileMenuIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-navy-100 px-4 py-4 space-y-3 shadow-lg">
+            <a href="#inicio" onclick="toggleMobileMenu()" class="block text-sm font-medium text-navy-800 hover:text-serenity-600 py-1.5">Início</a>
+            <a href="#historia" onclick="toggleMobileMenu()" class="block text-sm font-medium text-navy-800 hover:text-serenity-600 py-1.5">Nossa História</a>
+            <a href="#rsvp" onclick="toggleMobileMenu()" class="block text-sm font-medium text-navy-800 hover:text-serenity-600 py-1.5">Confirmar Presença</a>
+            <a href="#presentes" onclick="toggleMobileMenu()" class="block text-sm font-medium text-navy-800 hover:text-serenity-600 py-1.5">Lista de Presentes</a>
+            <a href="#local" onclick="toggleMobileMenu()" class="block text-sm font-medium text-navy-800 hover:text-serenity-600 py-1.5">Local</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="min-h-screen bg-hero flex items-center justify-center text-center text-white relative px-4 pt-16">
-        <div class="max-w-3xl mx-auto space-y-6">
-            <div class="inline-block px-4 py-1 border-t border-b border-serenity-400 text-xs md:text-sm font-light tracking-widest uppercase text-serenity-400">
-                Com a bênção de nossas famílias
-            </div>
-            <h1 class="font-cursive text-6xl md:text-9xl text-white py-2 drop-shadow-md">Matheus & Mayara</h1>
-            <div class="w-24 h-0.5 bg-serenity-400 mx-auto"></div>
-            <p class="font-serif text-2xl md:text-3xl italic font-light tracking-wide text-navy-50">11 de Março de 2028</p>
+    <!-- ===================================================================== -->
+    <!-- 1. CAPA (#inicio)                                                     -->
+    <!-- ===================================================================== -->
+    <section id="inicio" class="min-h-screen flex flex-col justify-between text-center text-white relative px-4 pt-20 pb-10 overflow-hidden bg-navy-950">
+        <img
+            src="https://cdn.abacus.ai/images/dc016c4e-3621-408d-98d9-037f0c11aa59.png"
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80';"
+            alt="Cenário rústico de casamento ao ar livre com pergolado de madeira, cortinas brancas e flores"
+            class="absolute inset-0 w-full h-full object-cover object-[center_84%] sm:object-[center_86%]"
+        >
 
-            <!-- Countdown Timer -->
-            <div class="pt-8 grid grid-cols-4 gap-2 md:gap-4 max-w-lg mx-auto" id="countdown">
-                <div class="bg-navy-900/80 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-serenity-400/30">
-                    <span id="days" class="font-serif text-2xl md:text-4xl font-bold text-serenity-400">00</span>
-                    <span class="block text-xs uppercase tracking-wider text-gray-300 mt-1">Dias</span>
-                </div>
-                <div class="bg-navy-900/80 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-serenity-400/30">
-                    <span id="hours" class="font-serif text-2xl md:text-4xl font-bold text-serenity-400">00</span>
-                    <span class="block text-xs uppercase tracking-wider text-gray-300 mt-1">Horas</span>
-                </div>
-                <div class="bg-navy-900/80 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-serenity-400/30">
-                    <span id="minutes" class="font-serif text-2xl md:text-4xl font-bold text-serenity-400">00</span>
-                    <span class="block text-xs uppercase tracking-wider text-gray-300 mt-1">Min</span>
-                </div>
-                <div class="bg-navy-900/80 backdrop-blur-md p-3 md:p-4 rounded-2xl border border-serenity-400/30">
-                    <span id="seconds" class="font-serif text-2xl md:text-4xl font-bold text-serenity-400">00</span>
-                    <span class="block text-xs uppercase tracking-wider text-gray-300 mt-1">Seg</span>
-                </div>
+        <!-- Película Azul Marinho Translúcida -->
+        <div class="absolute inset-0 bg-gradient-to-b from-navy-900/75 via-navy-800/65 to-navy-900/85"></div>
+        <div class="absolute inset-0 bg-navy-900/20"></div>
+
+        <!-- BLOCO SUPERIOR: CELEBRE CONOSCO + MATHEUS / & / MAYARA -->
+        <div class="absolute left-1/2 top-[64px] sm:top-[68px] md:top-[72px] -translate-x-1/2 z-10 w-full max-w-3xl px-4 flex flex-col items-center">
+            <p class="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-serenity-300 font-light mb-3 sm:mb-4 drop-shadow-[0_2px_8px_rgba(6,18,36,0.9)]">
+                CELEBRE CONOSCO
+            </p>
+
+            <h1 class="flex flex-col items-center justify-center select-none">
+                <span class="font-cursive text-4xl sm:text-5xl md:text-6xl text-white drop-shadow-md leading-[0.86]">
+                    Matheus
+                </span>
+                <span class="font-cursive text-2xl sm:text-3xl md:text-4xl text-serenity-400 my-0.5 leading-none drop-shadow-[0_3px_10px_rgba(6,18,36,0.9)]">
+                    &amp;
+                </span>
+                <span class="font-cursive text-4xl sm:text-5xl md:text-6xl text-white drop-shadow-md leading-[0.86]">
+                    Mayara
+                </span>
+            </h1>
+        </div>
+
+        <!-- CÁPSULA CENTRAL: DATA E HORÁRIO NO VÃO DO PERGOLADO -->
+        <div class="absolute left-1/2 top-[41%] sm:top-[42%] md:top-[43%] -translate-x-1/2 -translate-y-1/2 z-10 w-fit max-w-[280px] sm:max-w-[340px] md:max-w-[400px]">
+            <div class="inline-flex flex-col items-center px-5 py-2.5 sm:px-7 sm:py-3 rounded-2xl bg-navy-900/60 backdrop-blur-sm border border-white/25 shadow-lg">
+                <p class="font-serif text-sm sm:text-base md:text-lg text-white tracking-wide font-semibold whitespace-nowrap drop-shadow-[0_1px_6px_rgba(6,18,36,0.95)]">
+                    11 de Março de 2028
+                </p>
+                <p class="font-sans text-[10px] sm:text-xs uppercase tracking-[0.22em] text-serenity-300 mt-0.5 whitespace-nowrap drop-shadow-[0_1px_6px_rgba(6,18,36,0.95)]">
+                    CERIMÔNIA ÀS 16H
+                </p>
+            </div>
+        </div>
+
+        <!-- BLOCO INFERIOR: FRASE BÍBLICA + CONTAGEM REGRESSIVA -->
+        <div class="absolute left-1/2 bottom-20 sm:bottom-24 md:bottom-28 -translate-x-1/2 z-10 max-w-3xl w-full px-4 space-y-4">
+            <div class="max-w-2xl mx-auto px-3">
+                <p class="font-serif italic text-sm sm:text-base md:text-lg text-serenity-100 leading-relaxed drop-shadow">
+                    “O amor é paciente, o amor é bondoso. Tudo sofre, tudo crê, tudo espera, tudo suporta.”
+                </p>
+                <p class="font-sans text-[11px] sm:text-xs uppercase tracking-[0.22em] text-white font-semibold mt-1 drop-shadow">
+                    — 1 CORÍNTIOS 13: 4 - 7
+                </p>
             </div>
 
-            <div class="pt-6 flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="#rsvp" class="bg-navy-700 hover:bg-navy-800 text-white font-medium px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 border border-serenity-400/40">
-                    Confirmar Presença
-                </a>
-                <a href="https://share.google/VOy2bXO7vjud3iTpL" target="_blank" class="bg-white/10 hover:bg-white/20 text-white backdrop-blur-md font-medium px-6 py-3.5 rounded-full shadow-lg transition-all flex items-center space-x-2 border border-white/30">
-                    <i class="fa-solid fa-location-dot text-serenity-400"></i>
-                    <span>Ver Localização</span>
-                </a>
+            <!-- Cronômetro Regressivo Dinâmico -->
+            <div class="grid grid-cols-4 gap-2 sm:gap-3 max-w-xs sm:max-w-md mx-auto" id="countdown">
+                <div class="bg-navy-900/80 backdrop-blur-md border border-serenity-300/30 rounded-2xl p-2 sm:p-3 shadow-lg">
+                    <span id="days" class="font-serif text-lg sm:text-2xl md:text-3xl font-semibold text-white block">000</span>
+                    <span class="block text-[9px] sm:text-[11px] lowercase tracking-wider text-serenity-200 mt-0.5">dias</span>
+                </div>
+                <div class="bg-navy-900/80 backdrop-blur-md border border-serenity-300/30 rounded-2xl p-2 sm:p-3 shadow-lg">
+                    <span id="hours" class="font-serif text-lg sm:text-2xl md:text-3xl font-semibold text-white block">00</span>
+                    <span class="block text-[9px] sm:text-[11px] lowercase tracking-wider text-serenity-200 mt-0.5">horas</span>
+                </div>
+                <div class="bg-navy-900/80 backdrop-blur-md border border-serenity-300/30 rounded-2xl p-2 sm:p-3 shadow-lg">
+                    <span id="minutes" class="font-serif text-lg sm:text-2xl md:text-3xl font-semibold text-white block">00</span>
+                    <span class="block text-[9px] sm:text-[11px] lowercase tracking-wider text-serenity-200 mt-0.5">minutos</span>
+                </div>
+                <div class="bg-navy-900/80 backdrop-blur-md border border-serenity-300/30 rounded-2xl p-2 sm:p-3 shadow-lg">
+                    <span id="seconds" class="font-serif text-lg sm:text-2xl md:text-3xl font-semibold text-white block">00</span>
+                    <span class="block text-[9px] sm:text-[11px] lowercase tracking-wider text-serenity-200 mt-0.5">segundos</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seta Discreta na Base para Nossa História -->
+        <div class="absolute left-1/2 bottom-4 -translate-x-1/2 z-10">
+            <a href="#historia" aria-label="Rolar para Nossa História" class="inline-flex items-center justify-center text-serenity-200 hover:text-white transition-colors p-1.5 animate-bounce">
+                <i class="fa-solid fa-chevron-down text-xs sm:text-sm"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 2. NOSSA HISTÓRIA (#historia)                                         -->
+    <!-- ===================================================================== -->
+    <section id="historia" class="py-24 px-4 max-w-3xl mx-auto text-center">
+        <div class="space-y-6">
+            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-navy-50 text-serenity-600 border border-navy-100 mx-auto shadow-sm">
+                <!-- Ícone SVG de Par de Alianças de Casamento Entrelaçadas -->
+                <svg class="w-7 h-7 text-serenity-600" viewBox="0 0 36 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Par de alianças de casamento">
+                    <circle cx="13" cy="16" r="8.5" />
+                    <circle cx="23" cy="16" r="8.5" />
+                    <path d="M23 7.5L20.5 4.5L23 2L25.5 4.5L23 7.5Z" />
+                </svg>
+            </div>
+
+            <h2 class="font-serif text-3xl md:text-5xl font-bold text-navy-800">
+                Nossa História
+            </h2>
+
+            <div class="w-16 h-0.5 bg-serenity-600 mx-auto"></div>
+
+            <div class="space-y-5 text-navy-700 leading-relaxed text-base md:text-lg pt-2">
+                <p>
+                    Tudo começou de um jeito simples, como as melhores histórias de amor. Um olhar, um sorriso, e a certeza de que algo especial estava nascendo. Desde então, cada dia juntos tem sido uma nova aventura.
+                </p>
+                <p>
+                    Entre risos, sonhos compartilhados e muito companheirismo, construímos uma história que agora queremos selar para sempre. E nada nos deixaria mais felizes do que ter você ao nosso lado nesse momento tão especial.
+                </p>
+                <p class="font-serif text-xl md:text-2xl font-semibold text-navy-800 pt-2">
+                    Vem celebrar essa união com a gente!
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Nossa História -->
-    <section id="historia" class="py-20 px-4 max-w-4xl mx-auto text-center relative">
-        <div class="w-12 h-12 bg-navy-50 text-navy-700 rounded-full flex items-center justify-center mx-auto mb-4 border border-serenity-400">
-            <i class="fa-solid fa-heart text-lg text-navy-600"></i>
+    <!-- ===================================================================== -->
+    <!-- 3. CONFIRME SUA PRESENÇA - RSVP (#rsvp)                               -->
+    <!-- ===================================================================== -->
+    <section id="rsvp" class="py-24 px-4 bg-rustic-100 border-y border-rustic-200">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white p-7 sm:p-10 md:p-12 rounded-3xl shadow-xl border border-navy-100 relative">
+                <div class="text-center mb-8">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800">Confirme sua Presença</h2>
+                    <p class="text-navy-600 text-xs sm:text-sm mt-2 max-w-lg mx-auto leading-relaxed">
+                        Sua presença é o maior presente que podemos receber. Por favor, confirme até <strong class="text-navy-800">11 de fevereiro de 2028</strong>.
+                    </p>
+                    <div class="w-16 h-0.5 bg-serenity-600 mx-auto mt-4"></div>
+                </div>
+
+                <form id="rsvpForm" onsubmit="submitRSVP(event)" class="space-y-6">
+                    <div>
+                        <label for="rsvpName" class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Nome Completo *</label>
+                        <input type="text" id="rsvpName" required placeholder="Digite seu nome completo" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-700 text-sm transition-shadow">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="rsvpEmail" class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">E-mail *</label>
+                            <input type="email" id="rsvpEmail" required placeholder="seu@email.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-700 text-sm transition-shadow">
+                        </div>
+                        <div>
+                            <label for="rsvpPhone" class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Telefone / WhatsApp *</label>
+                            <input type="tel" id="rsvpPhone" required placeholder="(11) 99999-9999" maxlength="15" oninput="maskPhone(this)" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-700 text-sm transition-shadow">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Você irá ao casamento? *</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label id="attendingYesLabel" class="flex items-center justify-center p-3.5 rounded-xl cursor-pointer transition-all border-2 border-emerald-600 bg-emerald-50/70 text-emerald-900 shadow-sm">
+                                <input type="radio" name="attending" value="sim" checked onclick="toggleGuests(true)" class="accent-emerald-600 focus:ring-emerald-600">
+                                <span class="ml-2 font-semibold text-sm">Sim, com certeza estarei lá!</span>
+                            </label>
+                            <label id="attendingNoLabel" class="flex items-center justify-center p-3.5 rounded-xl cursor-pointer transition-all border-2 border-gray-200 bg-white text-navy-800 hover:bg-gray-50">
+                                <input type="radio" name="attending" value="nao" onclick="toggleGuests(false)" class="accent-rose-600 focus:ring-rose-600">
+                                <span class="ml-2 font-medium text-sm">Infelizmente não poderei ir</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="guestsContainer" class="space-y-4 bg-navy-50/70 p-5 rounded-2xl border border-navy-100 transition-all">
+                        <div>
+                            <label for="guestCount" class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Quantidade de Acompanhantes</label>
+                            <select id="guestCount" onchange="renderCompanionFields()" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-navy-700 text-sm">
+                                <option value="0">Apenas eu (0 acompanhantes)</option>
+                                <option value="1">1 Acompanhante</option>
+                                <option value="2">2 Acompanhantes</option>
+                                <option value="3">3 Acompanhantes</option>
+                                <option value="4">4 Acompanhantes</option>
+                            </select>
+                        </div>
+                        <div id="companionFieldsContainer" class="hidden space-y-3 pt-1"></div>
+                    </div>
+
+                    <div>
+                        <label for="rsvpMessage" class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Mensagem aos Noivos (Opcional)</label>
+                        <textarea id="rsvpMessage" rows="2" placeholder="Deixe uma mensagem de carinho para Matheus &amp; Mayara..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-700 text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-paper-plane text-serenity-300"></i>
+                        <span>Enviar Confirmação de Presença</span>
+                    </button>
+                </form>
+
+                <!-- Tela de Sucesso do RSVP -->
+                <div id="rsvpSuccess" class="hidden text-center py-8 space-y-4">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl shadow-sm">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-navy-800">Resposta Registrada!</h3>
+                    <p id="rsvpSuccessDetail" class="text-navy-600 text-sm max-w-md mx-auto leading-relaxed"></p>
+                    <button type="button" onclick="resetRSVPForm()" class="mt-2 inline-flex items-center space-x-2 text-xs font-semibold text-navy-800 bg-navy-50 hover:bg-navy-100 px-5 py-2.5 rounded-full transition-colors">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span>Enviar outra resposta</span>
+                    </button>
+                </div>
+            </div>
         </div>
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800 mb-4">Nossa História</h2>
-        <div class="w-16 h-0.5 bg-serenity-600 mx-auto mb-8"></div>
-        <p class="text-navy-700 leading-relaxed text-base md:text-lg mb-6">
-            O amor verdadeiro se constrói nos pequenos detalhes do dia a dia. Escolhemos caminhar juntos, dividindo sonhos, conquistas e os melhores sorrisos. 
-        </p>
-        <p class="text-navy-700 leading-relaxed text-base md:text-lg italic font-serif">
-            "O amor tudo sofre, tudo crê, tudo espera, tudo suporta." — 1 Coríntios 13:7
-        </p>
     </section>
 
-    <!-- Localização e Informações do Evento -->
-    <section id="local" class="py-20 bg-rustic-100 px-4 border-y border-rustic-200">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-16">
-                <span class="text-navy-600 font-medium uppercase text-xs tracking-widest">Informações Importantes</span>
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800 mt-2">O Casamento</h2>
+    <!-- ===================================================================== -->
+    <!-- 4. LISTA DE PRESENTES (#presentes)                                    -->
+    <!-- ===================================================================== -->
+    <section id="presentes" class="py-24 bg-cream px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-navy-600 font-semibold uppercase text-xs tracking-[0.2em]">Carinho em forma de presente</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800 mt-2">Lista de Presentes</h2>
+                <p class="text-navy-600 text-xs sm:text-sm mt-2 max-w-xl mx-auto leading-relaxed">
+                    Escolha um presente especial para nos ajudar a começar essa nova fase juntos. Todos os presentes podem ser enviados de forma rápida e segura via PIX.
+                </p>
                 <div class="w-16 h-0.5 bg-serenity-600 mx-auto mt-4"></div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 items-stretch">
-                <!-- Card de Cerimônia & Recepção -->
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-navy-100 flex flex-col justify-between text-center">
+            <div id="giftsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+                <!-- Preenchido dinamicamente por renderGiftsGrid() -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 5. CONTRIBUIÇÃO ESPECIAL / VAQUINHA PIX (#contribuicao)               -->
+    <!-- ===================================================================== -->
+    <section id="contribuicao" class="py-20 bg-rustic-100 px-4 border-y border-rustic-200">
+        <div class="max-w-3xl mx-auto text-center space-y-6">
+            <span class="text-navy-600 font-semibold uppercase text-xs tracking-[0.2em]">Lua de Mel &amp; Novo Lar</span>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800">Contribuição Especial</h2>
+            <p class="text-navy-600 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+                Prefere contribuir com um valor livre? Sua generosidade nos ajudará a realizar nossos sonhos juntos — seja a lua de mel, o nosso lar ou a celebração.
+            </p>
+            <div class="w-16 h-0.5 bg-serenity-600 mx-auto"></div>
+
+            <!-- Botões de Valores Rápidos -->
+            <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <button type="button" onclick="openContributionModal(50, false)" class="px-6 py-3 rounded-full bg-white hover:bg-navy-800 text-navy-800 hover:text-white border border-navy-200 font-semibold text-sm shadow-sm transition-all">
+                    R$ 50
+                </button>
+                <button type="button" onclick="openContributionModal(100, false)" class="px-6 py-3 rounded-full bg-white hover:bg-navy-800 text-navy-800 hover:text-white border border-navy-200 font-semibold text-sm shadow-sm transition-all">
+                    R$ 100
+                </button>
+                <button type="button" onclick="openContributionModal(200, false)" class="px-6 py-3 rounded-full bg-white hover:bg-navy-800 text-navy-800 hover:text-white border border-navy-200 font-semibold text-sm shadow-sm transition-all">
+                    R$ 200
+                </button>
+                <button type="button" onclick="openContributionModal(500, false)" class="px-6 py-3 rounded-full bg-white hover:bg-navy-800 text-navy-800 hover:text-white border border-navy-200 font-semibold text-sm shadow-sm transition-all">
+                    R$ 500
+                </button>
+            </div>
+
+            <div class="pt-1">
+                <button type="button" onclick="openContributionModal(150, true)" class="inline-flex items-center space-x-2.5 bg-navy-800 hover:bg-navy-900 text-white font-semibold px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all text-sm">
+                    <i class="fa-solid fa-gift text-serenity-300"></i>
+                    <span>Valor livre</span>
+                </button>
+            </div>
+
+            <p class="text-[11px] text-navy-500">
+                Escolha um valor acima para gerar o QR Code e a chave <strong>PIX</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL DE PAGAMENTO EXCLUSIVO VIA PIX (#paymentModal)                  -->
+    <!-- ===================================================================== -->
+    <div id="paymentModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-navy-900/80 backdrop-blur-sm p-3 sm:p-5 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-navy-100 overflow-hidden modal-animate my-auto">
+            <!-- Header do Modal PIX -->
+            <div class="bg-navy-900 text-white px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-full bg-serenity-400/20 text-serenity-300 flex items-center justify-center">
+                        <i class="fa-brands fa-pix"></i>
+                    </div>
                     <div>
-                        <div class="w-14 h-14 bg-navy-50 text-navy-700 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl border border-serenity-400/40">
-                            <i class="fa-solid fa-church"></i>
+                        <h3 id="modalGiftTitle" class="font-serif text-base sm:text-lg font-bold leading-tight">Presente aos Noivos</h3>
+                        <p class="text-[11px] text-serenity-300">Pagamento Instantâneo via PIX</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closePaymentModal()" aria-label="Fechar Modal" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Corpo do Modal PIX -->
+            <div id="paymentModalBody" class="p-6 sm:p-7 space-y-5">
+                <div class="bg-navy-50 rounded-2xl p-4 border border-navy-100 flex items-center justify-between">
+                    <div>
+                        <span class="block text-[10px] uppercase tracking-wider text-navy-500 font-semibold">Valor do Presente</span>
+                        <span id="modalDisplayAmount" class="font-serif text-2xl font-bold text-navy-900">R$ 100,00</span>
+                    </div>
+                    <span class="inline-flex items-center space-x-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
+                        <i class="fa-brands fa-pix"></i>
+                        <span>PIX Instantâneo</span>
+                    </span>
+                </div>
+
+                <!-- Campo de Valor Livre (exibido apenas quando isCustom = true) -->
+                <div id="customAmountWrapper" class="hidden">
+                    <label for="customAmountInput" class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-1.5">Informe o Valor Desejado (R$) *</label>
+                    <input type="number" id="customAmountInput" min="1" step="0.01" value="150" oninput="updateCustomAmount(this.value)" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-700 text-sm font-semibold">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="giftSenderName" class="block text-[11px] font-semibold text-navy-800 uppercase tracking-wider mb-1">Seu Nome *</label>
+                        <input type="text" id="giftSenderName" placeholder="Ex: João e Maria" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-700 text-xs sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="giftSenderNote" class="block text-[11px] font-semibold text-navy-800 uppercase tracking-wider mb-1">Recado (Opcional)</label>
+                        <input type="text" id="giftSenderNote" placeholder="Felicidades ao casal!" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-700 text-xs sm:text-sm">
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <!-- Exibição Direta do Arquivo Original do QR Code PIX conforme a modalidade -->
+                    <div class="p-4 bg-white border-2 border-navy-800 rounded-2xl shadow-sm flex flex-col items-center justify-center min-w-[208px] min-h-[208px]">
+                        <img id="pixQrImg" src="" alt="QR Code PIX" class="w-44 h-44 object-contain">
+                        <div id="pixQrMissingNotice" class="hidden w-44 h-44 flex flex-col items-center justify-center text-center p-2.5 bg-navy-50 rounded-xl border border-dashed border-navy-300">
+                            <i class="fa-solid fa-qrcode text-2xl text-navy-700 mb-1.5"></i>
+                            <span class="text-[10px] font-semibold text-navy-800 leading-tight">Arquivo: <code id="pixQrExpectedFile" class="font-mono bg-white px-1.5 py-0.5 rounded border border-navy-200 text-navy-900">Qualquer valor.png</code></span>
+                            <label for="localQrPicker" class="mt-2 cursor-pointer inline-flex items-center space-x-1 bg-navy-800 hover:bg-navy-900 text-white text-[10px] font-semibold px-2.5 py-1.5 rounded-lg shadow-sm transition-all">
+                                <i class="fa-solid fa-upload"></i>
+                                <span>Selecionar QR na prévia</span>
+                            </label>
+                            <input type="file" id="localQrPicker" accept="image/*" onchange="handleLocalQrUpload(event)" class="hidden">
+                            <span class="mt-1.5 text-[9px] text-navy-500 leading-tight">No GitHub Pages carrega automático da pasta.</span>
                         </div>
-                        <h3 class="font-serif text-2xl font-bold mb-3 text-navy-800">Cerimônia & Festa</h3>
-                        <p class="text-navy-600 font-medium mb-1">Local do Evento</p>
-                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
-                            A cerimônia e a recepção serão realizadas no mesmo local. Clique no botão abaixo para abrir o mapa com o itinerário completo.
-                        </p>
+                    </div>
+                    <span id="pixQrBadge" class="mt-2 inline-block text-[11px] font-semibold text-navy-700 bg-navy-50 px-3 py-0.5 rounded-full border border-navy-100">
+                        QR Code PIX — Qualquer valor
+                    </span>
+                    <p class="text-xs text-navy-600 mt-2 text-center">
+                        Aponte a câmera do app do seu banco para o QR Code acima ou copie o código PIX Copia e Cola abaixo:
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="block text-[11px] font-semibold text-navy-700 uppercase tracking-wider">Código PIX Copia e Cola / Chave PIX</label>
+                    <div class="flex items-center gap-2">
+                        <input type="text" id="pixKeyDisplay" readonly value="COLE_AQUI_O_PIX_COPIA_E_COLA" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 bg-navy-50/60 text-xs font-mono text-navy-800 select-all">
+                        <button type="button" id="copyPixBtn" onclick="copyPixKey()" class="shrink-0 bg-serenity-500 hover:bg-serenity-600 text-white font-semibold px-4 py-2.5 rounded-xl text-xs transition-all flex items-center space-x-1.5 shadow-sm">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>Copiar PIX</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="button" onclick="confirmGiftPayment()" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-sm">
+                    <i class="fa-solid fa-check text-serenity-300"></i>
+                    <span>Confirmar Envio do Presente via PIX</span>
+                </button>
+            </div>
+
+            <!-- Tela de Sucesso do Presente -->
+            <div id="paymentModalSuccess" class="hidden p-8 text-center space-y-4">
+                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-3xl shadow-sm">
+                    <i class="fa-solid fa-heart-circle-check"></i>
+                </div>
+                <h4 class="font-serif text-2xl font-bold text-navy-800">Muito Obrigado pelo Carinho!</h4>
+                <p id="paymentSuccessSummary" class="text-sm text-navy-600 leading-relaxed max-w-sm mx-auto">
+                    Seu presente foi registrado com sucesso no Painel dos Noivos.
+                </p>
+                <button type="button" onclick="closePaymentModal()" class="mt-4 bg-navy-800 hover:bg-navy-900 text-white font-semibold px-8 py-3 rounded-full text-sm transition-all">
+                    Voltar ao Site
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 6. MENSAGENS AOS NOIVOS / LIVRO DE RECADOS (#mensagens)               -->
+    <!-- ===================================================================== -->
+    <section id="mensagens" class="py-24 bg-cream px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-navy-600 font-semibold uppercase text-xs tracking-[0.2em]">Livro de Recados</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800 mt-2">Deixe sua Mensagem aos Noivos</h2>
+                <p class="text-navy-600 text-xs sm:text-sm mt-2 max-w-lg mx-auto leading-relaxed">
+                    Escreva uma palavra de carinho, bênção ou conselho para Matheus &amp; Mayara. Sua mensagem ficará salva no nosso relatório de recordações!
+                </p>
+                <div class="w-16 h-0.5 bg-serenity-600 mx-auto mt-4"></div>
+            </div>
+
+            <div class="bg-white p-7 md:p-10 rounded-3xl shadow-lg border border-navy-100">
+                <form id="guestMessageForm" onsubmit="submitGuestMessage(event)" class="space-y-5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="msgAuthorName" class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Seu Nome *</label>
+                            <input type="text" id="msgAuthorName" required placeholder="Digite seu nome" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-700 text-sm">
+                        </div>
+                        <div>
+                            <label for="msgAuthorRelation" class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Parentesco / Relação (Opcional)</label>
+                            <input type="text" id="msgAuthorRelation" placeholder="Ex: Amigos do noivo, Tia da noiva" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-700 text-sm">
+                        </div>
                     </div>
 
-                    <div class="space-y-4">
-                        <div class="inline-flex items-center justify-center bg-navy-50 text-navy-800 text-sm px-4 py-2 rounded-xl font-medium border border-navy-100 w-full">
-                            <i class="fa-regular fa-calendar mr-2 text-navy-600"></i>11 de Março de 2028 às 16:30 hrs
+                    <div>
+                        <label for="msgBody" class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Sua Mensagem *</label>
+                        <textarea id="msgBody" rows="3" required placeholder="Escreva aqui sua mensagem especial para Matheus &amp; Mayara..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-700 text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2 text-sm">
+                        <i class="fa-regular fa-heart text-serenity-300"></i>
+                        <span>Enviar Mensagem aos Noivos</span>
+                    </button>
+                </form>
+
+                <div id="guestMessageSuccess" class="hidden text-center py-8">
+                    <div class="w-14 h-14 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-navy-800">Mensagem Enviada com Carinho!</h3>
+                    <p class="text-navy-600 text-xs sm:text-sm mt-1.5 max-w-md mx-auto">Muito obrigado! Sua mensagem já está salva no relatório dos noivos.</p>
+                    <button type="button" onclick="resetGuestMessageForm()" class="mt-5 text-xs text-navy-800 underline font-semibold hover:text-serenity-600">
+                        Escrever outra mensagem
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 7. LOCAL DA CELEBRAÇÃO / COMO CHEGAR (#local)                         -->
+    <!-- ===================================================================== -->
+    <section id="local" class="py-24 bg-rustic-100 px-4 border-t border-rustic-200">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-navy-600 font-semibold uppercase text-xs tracking-[0.2em]">Onde &amp; Quando</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800 mt-2">Local da Celebração</h2>
+                <div class="w-16 h-0.5 bg-serenity-600 mx-auto mt-4"></div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl border border-navy-100 overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+                <!-- Mapa Interativo Incorporado -->
+                <div class="min-h-[300px] lg:min-h-full bg-navy-100 relative">
+                    <iframe
+                        title="Mapa Chácara São Cristóvão"
+                        src="https://www.google.com/maps?q=Estrada+Municipal,+8488+-+Jardim+Alegria,+Francisco+Morato+-+SP,+07983-000&output=embed"
+                        class="w-full h-full min-h-[300px] border-0"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                </div>
+
+                <!-- Informações do Local & Botão Como Chegar -->
+                <div class="p-8 md:p-10 flex flex-col justify-center space-y-6">
+                    <div>
+                        <span class="inline-flex items-center space-x-1.5 text-xs font-semibold uppercase tracking-widest text-serenity-600 bg-serenity-100/70 px-3 py-1 rounded-full">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Cerimônia &amp; Recepção</span>
+                        </span>
+                        <h3 class="font-serif text-2xl md:text-3xl font-bold text-navy-800 mt-3">
+                            Chácara São Cristóvão
+                        </h3>
+                    </div>
+
+                    <div class="space-y-4 text-sm text-navy-700">
+                        <div class="flex items-start space-x-3.5">
+                            <div class="w-10 h-10 rounded-xl bg-navy-50 text-navy-800 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-map-pin"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-navy-800 text-base">Endereço</h4>
+                                <p class="leading-relaxed mt-0.5">
+                                    Estrada Municipal, 8488 - Jardim Alegria, Francisco Morato - SP, 07983-000
+                                </p>
+                            </div>
                         </div>
-                        <a href="https://share.google/VOy2bXO7vjud3iTpL" target="_blank" class="w-full bg-navy-700 hover:bg-navy-800 text-white font-medium py-3 rounded-xl transition-all flex items-center justify-center space-x-2 shadow-md">
-                            <i class="fa-solid fa-map-location-dot"></i>
-                            <span>Abrir Endereço no GPS</span>
+
+                        <div class="flex items-start space-x-3.5">
+                            <div class="w-10 h-10 rounded-xl bg-navy-50 text-navy-800 flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-navy-800 text-base">Data e Horário</h4>
+                                <p class="leading-relaxed mt-0.5">
+                                    11 de Março de 2028 &bull; Cerimônia às 16h — Recepção logo após a cerimônia
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a
+                            href="https://maps.app.goo.gl/QyNfH5E7YX8RzLiw7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 bg-navy-800 hover:bg-navy-900 text-white font-semibold px-7 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all text-sm"
+                        >
+                            <i class="fa-solid fa-diamond-turn-right text-serenity-300"></i>
+                            <span>Como Chegar</span>
                         </a>
                     </div>
                 </div>
-
-                <!-- Traje e Recomendações -->
-                <div class="bg-white p-8 rounded-3xl shadow-sm border border-navy-100 flex flex-col justify-between text-center">
-                    <div>
-                        <div class="w-14 h-14 bg-navy-50 text-navy-700 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl border border-serenity-400/40">
-                            <i class="fa-solid fa-user-tie"></i>
-                        </div>
-                        <h3 class="font-serif text-2xl font-bold mb-3 text-navy-800">Traje Recomendado</h3>
-                        <p class="text-navy-600 font-medium mb-1">Passeio Completo / Traje Social</p>
-                        <p class="text-gray-600 text-sm mb-6 leading-relaxed">
-                            A paleta oficial do casamento é **Azul e Branco**. Pedimos gentilmente que os convidados evitem a cor branca para dar destaque exclusivo à noiva.
-                        </p>
-                    </div>
-
-                    <div class="bg-rustic-100 p-4 rounded-2xl border border-rustic-200">
-                        <p class="text-xs text-rustic-700 font-medium">Dica de Estilo: Rústico Chic</p>
-                        <p class="text-xs text-rustic-600 mt-1">Homens: Terno clássico ou costume. Mulheres: Vestidos longos ou midi elegantes.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Lista de Presentes & Contribuições -->
-    <section id="presentes" class="py-20 bg-cream px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-navy-600 font-medium uppercase text-xs tracking-widest">Sua generosidade é bem-vinda</span>
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800 mt-2">Lista de Presentes & Contribuições</h2>
-                <p class="text-navy-600 max-w-2xl mx-auto text-sm mt-2">Você pode escolher um presente específico da nossa lista virtual ou fazer uma contribuição livre de qualquer valor.</p>
-                <div class="w-16 h-0.5 bg-serenity-600 mx-auto mt-4"></div>
-            </div>
-
-            <!-- Modalidade 2: Vaquinha / PIX / Cartão (Destaque Principal) -->
-            <div class="bg-gradient-to-br from-navy-800 to-navy-900 text-white rounded-3xl p-8 md:p-10 mb-16 shadow-xl border border-navy-700">
-                <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <span class="inline-block bg-serenity-400/20 text-serenity-400 text-xs px-3 py-1 rounded-full font-medium mb-4 uppercase tracking-wider">Contribuição Livre</span>
-                        <h3 class="font-serif text-3xl font-bold mb-3">Vaquinha para Lua de Mel & Enxoval</h3>
-                        <p class="text-navy-100 text-sm leading-relaxed mb-6">
-                            Prefere nos apoiar com qualquer valor de sua preferência? Aceitamos contribuição direta via **PIX** ou **Cartão de Crédito**.
-                        </p>
-                        <div class="flex flex-wrap gap-3">
-                            <button onclick="openVaquinhaModal()" class="bg-serenity-500 hover:bg-serenity-600 text-navy-900 font-semibold px-6 py-3 rounded-xl transition-all shadow-md flex items-center space-x-2">
-                                <i class="fa-solid fa-qrcode"></i>
-                                <span>Contribuir via PIX</span>
-                            </button>
-                            <button onclick="openCardModal()" class="bg-white/10 hover:bg-white/20 text-white font-medium px-6 py-3 rounded-xl transition-all border border-white/20 flex items-center space-x-2">
-                                <i class="fa-regular fa-credit-card"></i>
-                                <span>Pagar no Cartão</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-                        <i class="fa-solid fa-plane-departure text-4xl text-serenity-400 mb-3"></i>
-                        <h4 class="font-serif text-xl font-semibold mb-1">Destino: Lua de Mel dos Sonhos</h4>
-                        <p class="text-xs text-navy-200">Toda contribuição nos ajudará a vivenciar momentos inesquecíveis no início da nossa vida a dois.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modalidade 1: Lista de Presentes Virtuais -->
-            <h3 class="font-serif text-2xl font-bold text-navy-800 mb-6 text-center">Presentes Virtuais Sugeridos</h3>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Presente 1 -->
-                <div class="bg-white rounded-2xl p-5 shadow-sm border border-navy-100 flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <div>
-                        <div class="h-40 bg-navy-50 rounded-xl mb-4 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=600&q=80" alt="Cafeteira Espresso" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-serif font-bold text-navy-800 text-lg mb-1">Cafeteira Espresso Modern</h4>
-                        <p class="text-xs text-navy-600 mb-4">Para os cafés matinais dos noivos.</p>
-                    </div>
-                    <div class="flex justify-between items-center pt-3 border-t border-gray-100">
-                        <span class="font-bold text-navy-800">R$ 350,00</span>
-                        <button onclick="openGiftModal('Cafeteira Espresso Modern', '350,00')" class="bg-navy-700 hover:bg-navy-800 text-white text-xs font-medium px-3.5 py-2 rounded-lg transition-colors">
-                            Presentear
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Presente 2 -->
-                <div class="bg-white rounded-2xl p-5 shadow-sm border border-navy-100 flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <div>
-                        <div class="h-40 bg-navy-50 rounded-xl mb-4 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Jantar Romântico" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-serif font-bold text-navy-800 text-lg mb-1">Jantar à Beira-Mar</h4>
-                        <p class="text-xs text-navy-600 mb-4">Experiência gastronômica na lua de mel.</p>
-                    </div>
-                    <div class="flex justify-between items-center pt-3 border-t border-gray-100">
-                        <span class="font-bold text-navy-800">R$ 200,00</span>
-                        <button onclick="openGiftModal('Jantar à Beira-Mar', '200,00')" class="bg-navy-700 hover:bg-navy-800 text-white text-xs font-medium px-3.5 py-2 rounded-lg transition-colors">
-                            Presentear
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Presente 3 -->
-                <div class="bg-white rounded-2xl p-5 shadow-sm border border-navy-100 flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <div>
-                        <div class="h-40 bg-navy-50 rounded-xl mb-4 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=600&q=80" alt="Jogo de Panelas" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-serif font-bold text-navy-800 text-lg mb-1">Jogo de Panelas Antiaderentes</h4>
-                        <p class="text-xs text-navy-600 mb-4">Essencial para a cozinha da casa nova.</p>
-                    </div>
-                    <div class="flex justify-between items-center pt-3 border-t border-gray-100">
-                        <span class="font-bold text-navy-800">R$ 480,00</span>
-                        <button onclick="openGiftModal('Jogo de Panelas Antiaderentes', '480,00')" class="bg-navy-700 hover:bg-navy-800 text-white text-xs font-medium px-3.5 py-2 rounded-lg transition-colors">
-                            Presentear
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Presente 4 -->
-                <div class="bg-white rounded-2xl p-5 shadow-sm border border-navy-100 flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <div>
-                        <div class="h-40 bg-navy-50 rounded-xl mb-4 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Passeio Turístico" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-serif font-bold text-navy-800 text-lg mb-1">Passeio Ecológico na Lua de Mel</h4>
-                        <p class="text-xs text-navy-600 mb-4">Cota para passeio inesquecível.</p>
-                    </div>
-                    <div class="flex justify-between items-center pt-3 border-t border-gray-100">
-                        <span class="font-bold text-navy-800">R$ 180,00</span>
-                        <button onclick="openGiftModal('Passeio Ecológico na Lua de Mel', '180,00')" class="bg-navy-700 hover:bg-navy-800 text-white text-xs font-medium px-3.5 py-2 rounded-lg transition-colors">
-                            Presentear
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RSVP / Confirmação de Presença -->
-    <section id="rsvp" class="py-20 px-4 max-w-3xl mx-auto">
-        <div class="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-navy-100 relative">
-            <div class="text-center mb-8">
-                <span class="text-navy-600 font-medium uppercase text-xs tracking-widest">Confirmação de Presença</span>
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-navy-800 mt-2">RSVP</h2>
-                <p class="text-navy-600 text-xs mt-2">Por favor, confirme sua presença para organizarmos tudo com carinho.</p>
-                <div class="w-16 h-0.5 bg-serenity-600 mx-auto mt-4"></div>
-            </div>
-
-            <form id="rsvpForm" onsubmit="submitRSVP(event)" class="space-y-6">
-                <div>
-                    <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Nome Completo *</label>
-                    <input type="text" id="rsvpName" required placeholder="Digite seu nome completo" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-600 text-sm">
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">E-mail *</label>
-                        <input type="email" id="rsvpEmail" required placeholder="seu@email.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-600 text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Telefone / WhatsApp *</label>
-                        <input type="tel" id="rsvpPhone" required placeholder="(00) 00000-0000" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-600 text-sm">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Você irá ao casamento? *</label>
-                    <div class="grid grid-cols-2 gap-4">
-                        <label class="flex items-center justify-center p-3.5 border rounded-xl cursor-pointer hover:bg-navy-50 transition-colors border-gray-200">
-                            <input type="radio" name="attending" value="sim" checked onclick="toggleGuests(true)" class="text-navy-700 focus:ring-navy-700">
-                            <span class="ml-2 font-medium text-sm text-navy-800">Sim, estarei lá!</span>
-                        </label>
-                        <label class="flex items-center justify-center p-3.5 border rounded-xl cursor-pointer hover:bg-navy-50 transition-colors border-gray-200">
-                            <input type="radio" name="attending" value="nao" onclick="toggleGuests(false)" class="text-navy-700 focus:ring-navy-700">
-                            <span class="ml-2 font-medium text-sm text-navy-800">Não poderei ir</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div id="guestsContainer" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Quantidade de Acompanhantes</label>
-                        <select id="guestCount" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-600 text-sm">
-                            <option value="0">Apenas eu</option>
-                            <option value="1">1 Acompanhante</option>
-                            <option value="2">2 Acompanhantes</option>
-                            <option value="3">3 Acompanhantes</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-2">Nome(s) do(s) Acompanhante(s)</label>
-                        <input type="text" id="guestNames" placeholder="Ex: Ana Souza, Pedro Alves" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-600 text-sm">
-                    </div>
-                </div>
-
-                <button type="submit" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-medium py-3.5 rounded-xl shadow-md transition-all">
-                    Enviar Confirmação
+    <!-- ===================================================================== -->
+    <!-- RODAPÉ                                                                -->
+    <!-- ===================================================================== -->
+    <footer class="bg-navy-900 text-white py-14 px-4 text-center border-t border-navy-800">
+        <div class="max-w-xl mx-auto space-y-3">
+            <h3 class="font-cursive text-4xl sm:text-5xl text-white">Matheus &amp; Mayara</h3>
+            <p class="font-serif text-sm sm:text-base text-serenity-300 tracking-wide">11 de Março de 2028</p>
+            <div class="w-12 h-px bg-serenity-400/40 mx-auto my-3"></div>
+            <p class="text-xs text-navy-200 font-light">Feito com amor para o nosso grande dia &bull; v1.5</p>
+            <div class="pt-2">
+                <button type="button" onclick="downloadIndexHtmlFile()" class="inline-flex items-center space-x-2 text-[11px] text-serenity-200 hover:text-white bg-white/10 hover:bg-white/15 border border-white/15 px-4 py-2 rounded-full transition-all">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Baixar arquivo index.html (v1.5)</span>
                 </button>
-            </form>
-
-            <div id="rsvpSuccess" class="hidden text-center py-8">
-                <i class="fa-solid fa-circle-check text-5xl text-green-600 mb-4"></i>
-                <h3 class="font-serif text-2xl font-bold text-navy-800">Confirmação Recebida!</h3>
-                <p class="text-navy-600 text-sm mt-2">Agradecemos por responder. Sua presença faz toda a diferença!</p>
-                <button onclick="resetRSVPForm()" class="mt-6 text-xs text-navy-700 underline font-medium">Enviar nova confirmação</button>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-navy-900 text-white py-12 text-center border-t border-navy-800">
-        <h3 class="font-cursive text-5xl text-serenity-400 mb-2">Matheus & Mayara</h3>
-        <p class="text-xs text-navy-200 uppercase tracking-widest mb-4">11 . 03 . 2028</p>
-        <p class="text-xs text-navy-300">Desenvolvido especialmente para celebrar a união de Matheus & Mayara.</p>
     </footer>
 
-    <!-- MODAL PRESENTES / PIX SPECIFICO -->
-    <div id="giftModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 text-center relative shadow-2xl">
-            <button onclick="closeGiftModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            
-            <div class="w-12 h-12 bg-navy-50 text-navy-700 rounded-full flex items-center justify-center mx-auto mb-3 text-xl border border-serenity-400/40">
-                <i class="fa-solid fa-gift"></i>
-            </div>
-            
-            <h3 class="font-serif text-2xl font-bold text-navy-800 mb-1" id="modalGiftTitle">Presente</h3>
-            <p class="text-sm text-navy-600 mb-4">Valor sugestivo: <span id="modalGiftPrice" class="font-bold text-navy-800">R$ 0,00</span></p>
-
-            <div class="bg-navy-50 p-4 rounded-2xl mb-4 border border-navy-100">
-                <div class="w-36 h-36 bg-white mx-auto p-2 rounded-xl shadow-inner flex items-center justify-center mb-3">
-                    <svg viewBox="0 0 100 100" class="w-full h-full">
-                        <rect x="0" y="0" width="100" height="100" fill="white" />
-                        <path d="M10 10 h30 v30 h-30 z M15 15 v20 h20 v-20 z M20 20 h10 v10 h-10 z" fill="#102a43" />
-                        <path d="M60 10 h30 v30 h-30 z M65 15 v20 h20 v-20 z M70 20 h10 v10 h-10 z" fill="#102a43" />
-                        <path d="M10 60 h30 v30 h-30 z M15 65 v20 h20 v-20 z M20 70 h10 v10 h-10 z" fill="#102a43" />
-                        <rect x="50" y="50" width="10" height="10" fill="#102a43" />
-                        <rect x="70" y="50" width="15" height="10" fill="#102a43" />
-                        <rect x="50" y="70" width="10" height="20" fill="#102a43" />
-                    </svg>
-                </div>
-                <p class="text-xs text-navy-600 mb-2">Escaneie o QR Code ou copie a chave PIX abaixo:</p>
-                <div class="flex items-center space-x-2 bg-white border rounded-xl p-2">
-                    <input type="text" id="pixKeyGift" readonly value="matheusemayara2028@gmail.com" class="w-full text-xs font-mono text-gray-600 bg-transparent outline-none">
-                    <button onclick="copyPix('pixKeyGift')" class="bg-navy-700 hover:bg-navy-800 text-white text-xs px-3 py-1.5 rounded-lg transition-colors">
-                        Copiar
-                    </button>
-                </div>
-            </div>
-            <p id="copyAlertGift" class="text-xs text-green-600 hidden font-medium">Chave PIX copiada com sucesso!</p>
-        </div>
-    </div>
-
-    <!-- MODAL VAQUINHA / PIX LIVRE -->
-    <div id="vaquinhaModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 text-center relative shadow-2xl">
-            <button onclick="closeVaquinhaModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <h3 class="font-serif text-2xl font-bold text-navy-800 mb-2">Contribuição Livre via PIX</h3>
-            <p class="text-xs text-navy-600 mb-4">Escolha o valor que deseja enviar diretamente para a conta do casal.</p>
-
-            <div class="bg-rustic-100 p-4 rounded-2xl mb-4 border border-rustic-200">
-                <div class="flex items-center space-x-2 bg-white border rounded-xl p-2 mb-3">
-                    <span class="text-xs text-gray-500 font-mono">PIX:</span>
-                    <input type="text" id="pixKeyFree" readonly value="matheusemayara2028@gmail.com" class="w-full text-xs font-mono text-gray-700 bg-transparent outline-none">
-                    <button onclick="copyPix('pixKeyFree')" class="bg-navy-700 hover:bg-navy-800 text-white text-xs px-3 py-1.5 rounded-lg transition-colors">
-                        Copiar
-                    </button>
-                </div>
-                <p id="copyAlertFree" class="text-xs text-green-600 hidden font-medium mb-2">Chave PIX copiada!</p>
-                <p class="text-xs text-gray-500">Banco: Itaú | Nome: Matheus & Mayara</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL CARTÃO DE CRÉDITO (CHECKOUT INTEGRADO SIMULADO) -->
-    <div id="cardModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 relative shadow-2xl">
-            <button onclick="closeCardModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="text-center mb-6">
-                <i class="fa-regular fa-credit-card text-3xl text-navy-700 mb-2"></i>
-                <h3 class="font-serif text-2xl font-bold text-navy-800">Pagamento no Cartão</h3>
-                <p class="text-xs text-navy-600">Checkout Seguro via Stripe (Simulação)</p>
-            </div>
-
-            <form onsubmit="submitCardPayment(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-navy-800 mb-1">Valor da Contribuição (R$)</label>
-                    <input type="number" required min="10" placeholder="100,00" class="w-full px-3 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-navy-600">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-navy-800 mb-1">Nome no Cartão</label>
-                    <input type="text" required placeholder="Nome igual ao cartão" class="w-full px-3 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-navy-600">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-navy-800 mb-1">Número do Cartão</label>
-                    <input type="text" required placeholder="0000 0000 0000 0000" class="w-full px-3 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-navy-600">
-                </div>
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-semibold text-navy-800 mb-1">Validade</label>
-                        <input type="text" placeholder="MM/AA" required class="w-full px-3 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-navy-600">
+    <!-- ===================================================================== -->
+    <!-- MODAL ADMINISTRATIVO — PAINEL DOS NOIVOS                              -->
+    <!-- ===================================================================== -->
+    <div id="adminModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-navy-900/80 backdrop-blur-sm p-3 sm:p-5 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-5xl w-full shadow-2xl border border-navy-100 overflow-hidden modal-animate my-auto">
+            <!-- Header do Painel -->
+            <div class="bg-navy-900 text-white px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-full bg-serenity-400/20 text-serenity-300 flex items-center justify-center">
+                        <i class="fa-solid fa-crown"></i>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-navy-800 mb-1">CVV</label>
-                        <input type="text" placeholder="123" required class="w-full px-3 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-navy-600">
+                        <h3 class="font-serif text-lg sm:text-xl font-bold">Painel dos Noivos — Matheus &amp; Mayara</h3>
+                        <p class="text-[11px] text-serenity-300">Acompanhamento de RSVP, Presentes e Mensagens (v1.5)</p>
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-medium py-3 rounded-xl shadow-md transition-all text-sm mt-2">
-                    Finalizar Pagamento Seguro
+                <button type="button" onclick="closeAdminModal()" aria-label="Fechar Painel" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
-            </form>
-        </div>
-    </div>
+            </div>
 
-    <!-- MODAL PAINEL NOIVOS (ADMIN) -->
-    <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-4xl w-full p-6 md:p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
-            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <!-- Login Admin -->
-            <div id="adminLogin" class="py-8 text-center max-w-sm mx-auto">
-                <div class="w-12 h-12 bg-navy-50 text-navy-800 rounded-full flex items-center justify-center mx-auto mb-4 text-xl border">
+            <!-- Tela de Login (Proteção por Senha) -->
+            <div id="adminLoginView" class="p-8 sm:p-12 max-w-md mx-auto text-center space-y-5">
+                <div class="w-14 h-14 rounded-full bg-navy-50 text-navy-800 flex items-center justify-center mx-auto text-2xl border border-navy-100">
                     <i class="fa-solid fa-lock"></i>
                 </div>
-                <h3 class="font-serif text-2xl font-bold text-navy-800 mb-2">Painel de Acompanhamento</h3>
-                <p class="text-xs text-navy-600 mb-6">Digite a senha dos noivos para ver o relatório de presenças (Senha: 1234)</p>
-                <input type="password" id="adminPassword" placeholder="Senha" class="w-full px-4 py-3 border rounded-xl mb-4 text-center text-lg outline-none focus:ring-2 focus:ring-navy-600">
-                <button onclick="checkAdminPassword()" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-medium py-3 rounded-xl transition-colors text-sm">
-                    Acessar Painel
-                </button>
-                <p id="adminError" class="text-xs text-red-500 mt-2 hidden">Senha incorreta. Tente "1234".</p>
+                <div>
+                    <h4 class="font-serif text-2xl font-bold text-navy-800">Área Restrita aos Noivos</h4>
+                    <p class="text-xs sm:text-sm text-navy-600 mt-1">Digite a senha administrativa para acessar os relatórios.</p>
+                </div>
+
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
+                    <div>
+                        <label for="adminPasswordInput" class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-1.5">Senha de Acesso</label>
+                        <input type="password" id="adminPasswordInput" required placeholder="Digite a senha..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-navy-800 text-sm">
+                        <p id="adminLoginError" class="hidden text-xs text-red-600 mt-1.5 font-medium">
+                            <i class="fa-solid fa-circle-exclamation mr-1"></i>Senha incorreta. Tente novamente.
+                        </p>
+                    </div>
+                    <button type="submit" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-3.5 rounded-xl shadow-md transition-all text-sm">
+                        Acessar Relatórios
+                    </button>
+                </form>
+
+                <p class="text-[11px] text-navy-600/80 bg-rustic-100 py-2 px-3 rounded-xl border border-rustic-200">
+                    Dica para teste na pré-visualização: senha <strong>1234</strong>
+                </p>
             </div>
 
-            <!-- Dashboard Admin -->
-            <div id="adminDashboard" class="hidden">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-4 mb-6">
-                    <div>
-                        <h3 class="font-serif text-2xl font-bold text-navy-800">Relatório de Convidados</h3>
-                        <p class="text-xs text-navy-600">Confirmações de presença recebidas pelo site</p>
+            <!-- Dashboard Administrativo Autenticado -->
+            <div id="adminDashboardView" class="hidden p-5 sm:p-7 space-y-6 max-h-[82vh] overflow-y-auto">
+                <!-- Métricas Gerais -->
+                <div class="grid grid-cols-2 lg:grid-cols-6 gap-3 sm:gap-3.5">
+                    <div class="bg-navy-50 p-3.5 rounded-2xl border border-navy-100">
+                        <span class="text-[10px] uppercase tracking-wider text-navy-600 font-semibold block">Respostas RSVP</span>
+                        <span id="statTotalRsvps" class="font-serif text-2xl font-bold text-navy-800 mt-1 block">0</span>
                     </div>
-                    <div class="mt-4 sm:mt-0 space-x-2">
-                        <button onclick="exportCSV()" class="bg-green-700 hover:bg-green-800 text-white text-xs px-4 py-2 rounded-lg font-medium transition-colors">
-                            <i class="fa-solid fa-file-excel mr-1"></i> Exportar CSV
+                    <div class="bg-green-50 p-3.5 rounded-2xl border border-green-200">
+                        <span class="text-[10px] uppercase tracking-wider text-green-700 font-semibold block">Confirmados</span>
+                        <span id="statConfirmedGroups" class="font-serif text-2xl font-bold text-green-800 mt-1 block">0</span>
+                    </div>
+                    <div class="bg-serenity-100 p-3.5 rounded-2xl border border-serenity-300">
+                        <span class="text-[10px] uppercase tracking-wider text-navy-700 font-semibold block">Total Pessoas</span>
+                        <span id="statTotalPeople" class="font-serif text-2xl font-bold text-navy-900 mt-1 block">0</span>
+                        <span class="text-[10px] text-navy-600">Titulares + acomp.</span>
+                    </div>
+                    <div class="bg-red-50 p-3.5 rounded-2xl border border-red-200">
+                        <span class="text-[10px] uppercase tracking-wider text-red-700 font-semibold block">Não Irão</span>
+                        <span id="statDeclined" class="font-serif text-2xl font-bold text-red-800 mt-1 block">0</span>
+                    </div>
+                    <div class="bg-rustic-100 p-3.5 rounded-2xl border border-rustic-200">
+                        <span class="text-[10px] uppercase tracking-wider text-rustic-700 font-semibold block">Presentes (R$)</span>
+                        <span id="statTotalGifts" class="font-serif text-lg sm:text-xl font-bold text-navy-800 mt-1 block">R$ 0,00</span>
+                    </div>
+                    <div class="bg-navy-50 p-3.5 rounded-2xl border border-navy-100">
+                        <span class="text-[10px] uppercase tracking-wider text-navy-600 font-semibold block">Recados</span>
+                        <span id="statTotalMessages" class="font-serif text-2xl font-bold text-navy-800 mt-1 block">0</span>
+                    </div>
+                </div>
+
+                <!-- Navegação de Abas do Painel -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-navy-100 pb-3">
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" onclick="switchAdminTab('rsvp')" id="adminTabRsvp" class="px-4 py-2 rounded-xl text-xs font-semibold bg-navy-800 text-white transition-all">
+                            Convidados (RSVP)
                         </button>
-                        <button onclick="logoutAdmin()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs px-3 py-2 rounded-lg transition-colors">
-                            Sair
+                        <button type="button" onclick="switchAdminTab('gifts')" id="adminTabGifts" class="px-4 py-2 rounded-xl text-xs font-semibold bg-navy-50 text-navy-700 hover:bg-navy-100 transition-all">
+                            Presentes &amp; PIX
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button type="button" onclick="downloadIndexHtmlFile()" class="bg-navy-800 hover:bg-navy-900 text-white font-semibold px-4 py-2.5 rounded-xl text-xs shadow-sm transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-file-code text-serenity-300 text-sm"></i>
+                            <span>Baixar index.html (v1.5)</span>
+                        </button>
+                        <button type="button" onclick="exportReportCSV()" class="bg-green-700 hover:bg-green-800 text-white font-semibold px-4 py-2.5 rounded-xl text-xs shadow-sm transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-file-csv text-sm"></i>
+                            <span>Exportar Relatório CSV / Excel</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Métricas -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                    <div class="bg-navy-50 p-4 rounded-xl border border-navy-100">
-                        <span class="block text-xs text-navy-600">Total Respostas</span>
-                        <span id="metricTotal" class="text-2xl font-bold text-navy-800">0</span>
+                <!-- SUB-PAINEL 1: LISTA DE CONVIDADOS (RSVP) -->
+                <div id="adminSubRsvp" class="space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="flex items-center space-x-2">
+                            <button type="button" onclick="setRsvpFilter('all')" id="filterAllBtn" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-navy-800 text-white">Todos</button>
+                            <button type="button" onclick="setRsvpFilter('sim')" id="filterSimBtn" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-navy-50 text-navy-700 hover:bg-navy-100">Confirmados</button>
+                            <button type="button" onclick="setRsvpFilter('nao')" id="filterNaoBtn" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-navy-50 text-navy-700 hover:bg-navy-100">Não Confirmados</button>
+                        </div>
+
+                        <div class="relative sm:w-64">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-navy-400"></i>
+                            <input type="text" id="rsvpSearchInput" oninput="renderAdminDashboard()" placeholder="Buscar convidado..." class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:ring-2 focus:ring-navy-700">
+                        </div>
                     </div>
-                    <div class="bg-green-50 p-4 rounded-xl border border-green-100">
-                        <span class="block text-xs text-green-700">Confirmados</span>
-                        <span id="metricConfirmed" class="text-2xl font-bold text-green-800">0</span>
-                    </div>
-                    <div class="bg-red-50 p-4 rounded-xl border border-red-100">
-                        <span class="block text-xs text-red-700">Recusados</span>
-                        <span id="metricDeclined" class="text-2xl font-bold text-red-800">0</span>
-                    </div>
-                    <div class="bg-serenity-500/10 p-4 rounded-xl border border-serenity-400/20">
-                        <span class="block text-xs text-navy-700">Total de Pessoas</span>
-                        <span id="metricTotalPeople" class="text-2xl font-bold text-navy-800">0</span>
+
+                    <div class="overflow-x-auto rounded-2xl border border-navy-100">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-navy-50 text-navy-800 uppercase tracking-wider border-b border-navy-100">
+                                    <th class="py-3 px-4 font-semibold">Convidado</th>
+                                    <th class="py-3 px-4 font-semibold">Contato</th>
+                                    <th class="py-3 px-4 font-semibold">Status</th>
+                                    <th class="py-3 px-4 font-semibold">Acompanhantes</th>
+                                    <th class="py-3 px-4 font-semibold">Mensagem</th>
+                                    <th class="py-3 px-4 font-semibold text-right">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminRsvpTableBody" class="divide-y divide-navy-50 bg-white"></tbody>
+                        </table>
                     </div>
                 </div>
 
-                <!-- Tabela -->
-                <div class="overflow-x-auto border rounded-xl">
-                    <table class="w-full text-left text-xs">
-                        <thead class="bg-navy-50 text-navy-800 font-semibold uppercase border-b">
-                            <tr>
-                                <th class="p-3">Data</th>
-                                <th class="p-3">Nome</th>
-                                <th class="p-3">Contato</th>
-                                <th class="p-3">Status</th>
-                                <th class="p-3">Acompanhantes</th>
-                                <th class="p-3 text-center">Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminTableBody" class="divide-y divide-gray-100 text-navy-700">
-                            <!-- Inserido dinamicamente via JavaScript -->
-                        </tbody>
-                    </table>
+                <!-- SUB-PAINEL 2: PRESENTES & CONTRIBUIÇÕES -->
+                <div id="adminSubGifts" class="hidden space-y-4">
+                    <div class="overflow-x-auto rounded-2xl border border-navy-100">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-navy-50 text-navy-800 uppercase tracking-wider border-b border-navy-100">
+                                    <th class="py-3 px-4 font-semibold">Presenteador</th>
+                                    <th class="py-3 px-4 font-semibold">Item / Contribuição</th>
+                                    <th class="py-3 px-4 font-semibold">Valor</th>
+                                    <th class="py-3 px-4 font-semibold">Forma</th>
+                                    <th class="py-3 px-4 font-semibold">Recado</th>
+                                    <th class="py-3 px-4 font-semibold">Data</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminGiftsTableBody" class="divide-y divide-navy-50 bg-white"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- SUB-PAINEL 3: LIVRO DE RECADOS -->
+                <div id="adminSubMessages" class="hidden space-y-3"></div>
+
+                <!-- Rodapé do Painel -->
+                <div class="pt-2 border-t border-navy-100 flex justify-between items-center text-xs text-navy-600">
+                    <span>Dados armazenados localmente no navegador (GitHub Pages ready).</span>
+                    <button type="button" onclick="logoutAdmin()" class="text-red-700 hover:underline font-semibold">
+                        <i class="fa-solid fa-right-from-bracket mr-1"></i>Sair do Painel
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- ===================================================================== -->
+    <!-- JAVASCRIPT — CONFIGURAÇÃO, INTERATIVIDADE E ARMAZENAMENTO LOCAL       -->
+    <!-- ===================================================================== -->
     <script>
-        // Data do Casamento: 11 de Março de 2028
-        const weddingDate = new Date('2028-03-11T16:30:00').getTime();
+        /**
+         * SITE DE CASAMENTO MATHEUS & MAYARA — VERSÃO 1.5 (index.html)
+         * Os noivos podem editar facilmente os presentes, preços, códigos PIX Copia e Cola e senha aqui.
+         */
+        const SITE_VERSION = 'v1.5';
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const difference = weddingDate - now;
+        const SITE_CONFIG = {
+            weddingDateISO: '2028-03-11T16:00:00-03:00',
+            adminPassword: '1234',
+            // Cole abaixo o código "PIX Copia e Cola" gerado no banco para cada QR Code correspondente
+            pixCodes: {
+                '50': 'COLE_AQUI_O_PIX_COPIA_E_COLA_DE_50_REAIS',
+                '100': 'COLE_AQUI_O_PIX_COPIA_E_COLA_DE_100_REAIS',
+                '200': 'COLE_AQUI_O_PIX_COPIA_E_COLA_DE_200_REAIS',
+                '500': 'COLE_AQUI_O_PIX_COPIA_E_COLA_DE_500_REAIS',
+                'livre': 'COLE_AQUI_O_PIX_COPIA_E_COLA_DE_QUALQUER_VALOR'
+            },
+            mapUrl: 'https://maps.app.goo.gl/QyNfH5E7YX8RzLiw7',
+            gifts: [
+                {
+                    id: 'gift-1',
+                    category: 'Cozinha',
+                    title: 'Jogo de Panelas Inox Fundo Triplo',
+                    description: 'Para prepararmos nossas primeiras refeições juntos em nosso novo lar.',
+                    price: 480.00,
+                    image: 'https://images.unsplash.com/photo-1584990347449-fd98bc063110?auto=format&fit=crop&w=900&q=85'
+                },
+                {
+                    id: 'gift-2',
+                    category: 'Cozinha',
+                    title: 'Cafeteira Expresso Automática',
+                    description: 'Para começarmos todas as manhãs com um café especial e cheio de carinho.',
+                    price: 420.00,
+                    image: 'https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=900&q=85'
+                },
+                {
+                    id: 'gift-3',
+                    category: 'Mesa Posta',
+                    title: 'Aparelho de Jantar Porcelana 42 Peças',
+                    description: 'Elegância e delicadeza para recebermos nossos amigos e familiares à mesa.',
+                    price: 590.00,
+                    image: 'https://images.unsplash.com/photo-1603199506016-b9a594b593c0?auto=format&fit=crop&w=900&q=85'
+                },
+                {
+                    id: 'gift-4',
+                    category: 'Casa Inteligente',
+                    title: 'Robô Aspirador Inteligente',
+                    description: 'Um ajudante moderno para manter nossa casa sempre impecável.',
+                    price: 890.00,
+                    image: 'https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=900&q=85'
+                },
+                {
+                    id: 'gift-5',
+                    category: 'Quarto',
+                    title: 'Jogo de Cama King 400 Fios Algodão',
+                    description: 'Conforto e maciez para noites tranquilas no nosso quarto.',
+                    price: 340.00,
+                    image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=900&q=85'
+                },
+                {
+                    id: 'gift-6',
+                    category: 'Eletroportáteis',
+                    title: 'Fritadeira Elétrica Air Fryer Inox',
+                    description: 'Praticidade e receitas deliciosas para o nosso dia a dia a dois.',
+                    price: 440.00,
+                    image: 'https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=900&q=85'
+                },
+                {
+                    id: 'gift-7',
+                    category: 'Eletroportáteis',
+                    title: 'Batedeira Planetária Clássica',
+                    description: 'Para prepararmos bolos, pães e sobremesas nos fins de semana em família.',
+                    price: 520.00,
+                    image: 'https://images.unsplash.com/photo-1594385208974-2e75f8d7bb48?auto=format&fit=crop&w=900&q=85'
+                },
+                {
+                    id: 'gift-8',
+                    category: 'Mesa Posta',
+                    title: 'Conjunto de Taças de Cristal',
+                    description: 'Para brindarmos cada conquista e momento especial da nossa vida a dois.',
+                    price: 260.00,
+                    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=85'
+                },
+                {
+                    id: 'gift-9',
+                    category: 'Mesa Posta',
+                    title: 'Faqueiro Inox Completo 48 Peças',
+                    description: 'Acabamento refinado para completar nossa mesa posta em ocasiões especiais.',
+                    price: 310.00,
+                    image: 'https://images.unsplash.com/photo-1584346133934-a3afd2a33c4c?auto=format&fit=crop&w=900&q=85'
+                },
+                {
+                    id: 'gift-10',
+                    category: 'Banho',
+                    title: 'Jogo de Toalhas Gigantes Fio Egípcio',
+                    description: 'Maciez e aconchego para o nosso novo banheiro.',
+                    price: 230.00,
+                    image: 'https://images.unsplash.com/photo-1616627561839-074385245ff6?auto=format&fit=crop&w=900&q=85'
+                },
+                {
+                    id: 'gift-11',
+                    category: 'Lua de Mel',
+                    title: 'Cota Lua de Mel — Jantar Romântico',
+                    description: 'Uma noite inesquecível à luz de velas para celebrarmos nossa união.',
+                    price: 280.00,
+                    image: 'https://images.unsplash.com/photo-1529543544282-ea669407fca3?auto=format&fit=crop&w=900&q=85'
+                },
+                {
+                    id: 'gift-12',
+                    category: 'Lua de Mel',
+                    title: 'Cota Lua de Mel — Passeio Especial',
+                    description: 'Um passeio inesquecível durante a viagem dos nossos sonhos.',
+                    price: 390.00,
+                    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=85'
+                }
+            ]
+        };
 
-            if (difference > 0) {
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        // Chaves do LocalStorage
+        const STORAGE_KEYS = {
+            RSVPS: 'mm_wedding_rsvps_v1',
+            GIFTS: 'mm_wedding_gifts_v1',
+            MESSAGES: 'mm_wedding_messages_v1'
+        };
 
-                document.getElementById('days').innerText = String(days).padStart(2, '0');
-                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        // Estado atual do Modal de Pagamento (Exclusivo PIX) e do Painel
+        let currentPaymentState = {
+            title: 'Contribuição Especial',
+            amount: 100,
+            isCustom: false,
+            qrKey: 'livre'
+        };
+        let uploadedPreviewQrMap = {};
+        let currentRsvpFilter = 'all';
+        let isAdminAuthenticated = false;
+
+        // =====================================================================
+        // MAPEAMENTO DE QR CODES:
+        // - Botões R$ 50, R$ 100, R$ 200 e R$ 500 -> seus respectivos arquivos
+        // - Todos os 12 itens da Lista de Presentes + botão "Valor livre" -> "Qualquer valor.png"
+        // =====================================================================
+        const QR_PROFILES = {
+            '50': {
+                candidates: ['50 reais.png', '50 reais_2.png'],
+                expectedFile: '50 reais.png',
+                badge: 'QR Code PIX — R$ 50,00'
+            },
+            '100': {
+                candidates: ['100 reais.png', '100 reais_2.png'],
+                expectedFile: '100 reais.png',
+                badge: 'QR Code PIX — R$ 100,00'
+            },
+            '200': {
+                candidates: ['200 reais.png', '200 reais_2.png'],
+                expectedFile: '200 reais.png',
+                badge: 'QR Code PIX — R$ 200,00'
+            },
+            '500': {
+                candidates: ['500 reais.png', '500 reais_2.png'],
+                expectedFile: '500 reais.png',
+                badge: 'QR Code PIX — R$ 500,00'
+            },
+            'livre': {
+                candidates: ['Qualquer valor.png', 'Qualquer valor_3.png', 'Qualquer valor_2.png'],
+                expectedFile: 'Qualquer valor.png',
+                badge: 'QR Code PIX — Qualquer valor'
+            }
+        };
+
+        function handleLocalQrUpload(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+            const key = currentPaymentState.qrKey || 'livre';
+            if (uploadedPreviewQrMap[key]) {
+                URL.revokeObjectURL(uploadedPreviewQrMap[key]);
+            }
+            uploadedPreviewQrMap[key] = URL.createObjectURL(file);
+            renderPixQrCode(key);
+            showToast(`Imagem do QR Code (${QR_PROFILES[key].expectedFile}) carregada na prévia!`);
+        }
+
+        function renderPixQrCode(qrKey) {
+            const img = document.getElementById('pixQrImg');
+            const missingNotice = document.getElementById('pixQrMissingNotice');
+            const expectedFileEl = document.getElementById('pixQrExpectedFile');
+            const badge = document.getElementById('pixQrBadge');
+            const pixInput = document.getElementById('pixKeyDisplay');
+            if (!img) return;
+
+            const profile = QR_PROFILES[qrKey] || QR_PROFILES['livre'];
+
+            if (badge) {
+                badge.textContent = profile.badge;
+            }
+
+            if (pixInput) {
+                pixInput.value = SITE_CONFIG.pixCodes[qrKey] || SITE_CONFIG.pixCodes['livre'];
+            }
+
+            if (expectedFileEl) {
+                expectedFileEl.textContent = profile.expectedFile;
+            }
+
+            // Se o usuário já carregou a imagem deste QR Code na pré-visualização, exibe imediatamente
+            if (uploadedPreviewQrMap[qrKey]) {
+                img.onload = () => {
+                    img.classList.remove('hidden');
+                    if (missingNotice) missingNotice.classList.add('hidden');
+                };
+                img.src = uploadedPreviewQrMap[qrKey];
+                return;
+            }
+
+            img.classList.remove('hidden');
+            if (missingNotice) missingNotice.classList.add('hidden');
+
+            let candidateIdx = 0;
+            const tryLoadNextQrFile = () => {
+                if (candidateIdx >= profile.candidates.length) {
+                    img.classList.add('hidden');
+                    if (missingNotice) missingNotice.classList.remove('hidden');
+                    return;
+                }
+                const nextFile = profile.candidates[candidateIdx++];
+                img.onload = () => {
+                    img.classList.remove('hidden');
+                    if (missingNotice) missingNotice.classList.add('hidden');
+                };
+                img.onerror = tryLoadNextQrFile;
+                img.src = encodeURI(nextFile);
+            };
+
+            tryLoadNextQrFile();
+        }
+
+        // Os 12 itens da Lista de Presentes usam sempre o QR Code "Qualquer valor"
+        function openGiftModal(giftId) {
+            const gift = SITE_CONFIG.gifts.find(g => g.id === giftId);
+            if (!gift) return;
+            openPaymentModalInternal(gift.title, gift.price, false, 'livre');
+        }
+
+        // Os botões de Contribuição Especial usam o QR Code correspondente ao valor (50, 100, 200, 500 ou 'livre')
+        function openContributionModal(amount, isCustom) {
+            const label = isCustom ? 'Contribuição Especial (Valor Livre)' : `Contribuição Especial — ${formatBRL(amount)}`;
+            const qrKey = isCustom ? 'livre' : String(amount);
+            openPaymentModalInternal(label, amount, isCustom, qrKey);
+        }
+
+        function openPaymentModalInternal(title, amount, isCustom, qrKey) {
+            currentPaymentState = {
+                title,
+                amount: Number(amount),
+                isCustom: Boolean(isCustom),
+                qrKey: qrKey || 'livre'
+            };
+
+            document.getElementById('modalGiftTitle').textContent = title;
+            document.getElementById('modalDisplayAmount').textContent = formatBRL(amount);
+
+            const customWrapper = document.getElementById('customAmountWrapper');
+            const customInput = document.getElementById('customAmountInput');
+            if (isCustom) {
+                customWrapper.classList.remove('hidden');
+                customInput.value = amount;
+            } else {
+                customWrapper.classList.add('hidden');
+            }
+
+            document.getElementById('giftSenderName').value = '';
+            document.getElementById('giftSenderNote').value = '';
+            document.getElementById('paymentModalSuccess').classList.add('hidden');
+            document.getElementById('paymentModalBody').classList.remove('hidden');
+
+            renderPixQrCode(currentPaymentState.qrKey);
+
+            const modal = document.getElementById('paymentModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closePaymentModal() {
+            const modal = document.getElementById('paymentModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function updateCustomAmount(rawValue) {
+            const parsed = parseFloat(rawValue);
+            const validAmount = !isNaN(parsed) && parsed > 0 ? parsed : 0;
+            currentPaymentState.amount = validAmount;
+            document.getElementById('modalDisplayAmount').textContent = formatBRL(validAmount);
+            renderPixQrCode('livre');
+        }
+
+        // =====================================================================
+        // INICIALIZAÇÃO DE DADOS DE EXEMPLO (PARA O PAINEL DOS NOIVOS)
+        // =====================================================================
+        function initSeedData() {
+            try {
+                if (!localStorage.getItem(STORAGE_KEYS.RSVPS)) {
+                    const initialRsvps = [
+                        {
+                            id: 'rsvp-seed-1',
+                            name: 'Lucas Andrade & Camila Silva',
+                            email: 'lucas.andrade@email.com',
+                            phone: '(11) 98765-4321',
+                            attending: 'sim',
+                            guestCount: 1,
+                            guestNames: 'Camila Silva',
+                            message: 'Que alegria celebrar esse dia tão especial ao lado de vocês!',
+                            createdAt: '21/11/2026 14:20'
+                        },
+                        {
+                            id: 'rsvp-seed-2',
+                            name: 'Mariana Costa',
+                            email: 'mariana.costa@email.com',
+                            phone: '(11) 99123-4567',
+                            attending: 'sim',
+                            guestCount: 2,
+                            guestNames: 'Rafael Costa, Sofia Costa',
+                            message: 'Estaremos lá com certeza! Deus abençoe essa união.',
+                            createdAt: '21/11/2026 16:45'
+                        }
+                    ];
+                    localStorage.setItem(STORAGE_KEYS.RSVPS, JSON.stringify(initialRsvps));
+                }
+
+                if (!localStorage.getItem(STORAGE_KEYS.GIFTS)) {
+                    const initialGifts = [
+                        {
+                            id: 'gift-seed-1',
+                            senderName: 'Tia Helena & Tio Jorge',
+                            giftTitle: 'Jogo de Panelas Inox Fundo Triplo',
+                            amount: 480.00,
+                            method: 'PIX',
+                            note: 'Com todo nosso amor para o novo lar de vocês!',
+                            createdAt: '21/11/2026 15:10'
+                        }
+                    ];
+                    localStorage.setItem(STORAGE_KEYS.GIFTS, JSON.stringify(initialGifts));
+                }
+
+                if (!localStorage.getItem(STORAGE_KEYS.MESSAGES)) {
+                    const initialMessages = [
+                        {
+                            id: 'msg-seed-1',
+                            author: 'Beatriz & Guilherme',
+                            relation: 'Padrinhos',
+                            body: 'Matheus e Mayara, acompanhar a história de vocês é um privilégio. Contem sempre conosco!',
+                            createdAt: '21/11/2026 17:30'
+                        }
+                    ];
+                    localStorage.setItem(STORAGE_KEYS.MESSAGES, JSON.stringify(initialMessages));
+                }
+            } catch (err) {
+                console.error('Erro ao inicializar dados locais:', err);
             }
         }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+
+        function getStoredList(key) {
+            try {
+                const raw = localStorage.getItem(key);
+                return raw ? JSON.parse(raw) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveStoredList(key, list) {
+            try {
+                localStorage.setItem(key, JSON.stringify(list));
+            } catch (e) {
+                showToast('Não foi possível salvar no armazenamento local.', 'error');
+            }
+        }
+
+        function formatBRL(value) {
+            return Number(value || 0).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+        }
+
+        function getFormattedNow() {
+            const now = new Date();
+            return now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // =====================================================================
+        // TOAST NOTIFICATIONS (SEM ALERT/CONFIRM)
+        // =====================================================================
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            const bgClass = type === 'error'
+                ? 'bg-red-800 text-white border-red-600'
+                : 'bg-navy-900 text-white border-serenity-400/50';
+            const iconClass = type === 'error'
+                ? 'fa-solid fa-circle-exclamation text-red-300'
+                : 'fa-solid fa-circle-check text-serenity-300';
+
+            toast.className = `${bgClass} pointer-events-auto border px-4 py-3.5 rounded-2xl shadow-xl flex items-center space-x-3 text-xs sm:text-sm modal-animate`;
+            toast.innerHTML = `
+                <i class="${iconClass} text-base shrink-0"></i>
+                <span class="font-medium leading-snug">${message}</span>
+            `;
+
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(6px)';
+                toast.style.transition = 'all 0.25s ease';
+                setTimeout(() => toast.remove(), 260);
+            }, 3600);
+        }
+
+        // =====================================================================
+        // MENU MOBILE
+        // =====================================================================
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('mobileMenuIcon');
+            const isHidden = menu.classList.contains('hidden');
+
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // =====================================================================
+        // CRONÔMETRO REGRESSIVO (11/03/2028 16:00)
+        // =====================================================================
+        function updateCountdown() {
+            const targetTime = new Date(SITE_CONFIG.weddingDateISO).getTime();
+            const now = Date.now();
+            const diff = targetTime - now;
+
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+
+            if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+            if (diff <= 0) {
+                daysEl.textContent = '00';
+                hoursEl.textContent = '00';
+                minutesEl.textContent = '00';
+                secondsEl.textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            daysEl.textContent = String(days).padStart(2, '0');
+            hoursEl.textContent = String(hours).padStart(2, '0');
+            minutesEl.textContent = String(minutes).padStart(2, '0');
+            secondsEl.textContent = String(seconds).padStart(2, '0');
+        }
+
+        // =====================================================================
+        // RSVP (CONFIRMAÇÃO DE PRESENÇA)
+        // =====================================================================
+        function maskPhone(input) {
+            let v = input.value.replace(/\D/g, '');
+            if (v.length > 11) v = v.slice(0, 11);
+            if (v.length > 6) {
+                input.value = `(${v.slice(0, 2)}) ${v.slice(2, 7)}-${v.slice(7)}`;
+            } else if (v.length > 2) {
+                input.value = `(${v.slice(0, 2)}) ${v.slice(2)}`;
+            } else if (v.length > 0) {
+                input.value = `(${v}`;
+            }
+        }
 
         function toggleGuests(show) {
             const container = document.getElementById('guestsContainer');
+            const yesLabel = document.getElementById('attendingYesLabel');
+            const noLabel = document.getElementById('attendingNoLabel');
+
+            if (yesLabel && noLabel) {
+                const yesSpan = yesLabel.querySelector('span');
+                const noSpan = noLabel.querySelector('span');
+
+                if (show) {
+                    yesLabel.className = 'flex items-center justify-center p-3.5 rounded-xl cursor-pointer transition-all border-2 border-emerald-600 bg-emerald-50/70 text-emerald-900 shadow-sm';
+                    if (yesSpan) yesSpan.className = 'ml-2 font-semibold text-sm';
+
+                    noLabel.className = 'flex items-center justify-center p-3.5 rounded-xl cursor-pointer transition-all border-2 border-gray-200 bg-white text-navy-800 hover:bg-gray-50';
+                    if (noSpan) noSpan.className = 'ml-2 font-medium text-sm';
+                } else {
+                    yesLabel.className = 'flex items-center justify-center p-3.5 rounded-xl cursor-pointer transition-all border-2 border-gray-200 bg-white text-navy-800 hover:bg-gray-50';
+                    if (yesSpan) yesSpan.className = 'ml-2 font-medium text-sm';
+
+                    noLabel.className = 'flex items-center justify-center p-3.5 rounded-xl cursor-pointer transition-all border-2 border-rose-600 bg-rose-50/70 text-rose-900 shadow-sm';
+                    if (noSpan) noSpan.className = 'ml-2 font-semibold text-sm';
+                }
+            }
+
+            if (!container) return;
             if (show) {
                 container.classList.remove('hidden');
+                renderCompanionFields();
             } else {
                 container.classList.add('hidden');
+                const fieldsContainer = document.getElementById('companionFieldsContainer');
+                if (fieldsContainer) {
+                    fieldsContainer.innerHTML = '';
+                    fieldsContainer.classList.add('hidden');
+                }
             }
         }
 
-        function getRSVPData() {
-            return JSON.parse(localStorage.getItem('wedding_rsvps_mm')) || [];
-        }
+        function renderCompanionFields() {
+            const select = document.getElementById('guestCount');
+            const fieldsContainer = document.getElementById('companionFieldsContainer');
+            if (!select || !fieldsContainer) return;
 
-        function saveRSVPData(data) {
-            localStorage.setItem('wedding_rsvps_mm', JSON.stringify(data));
+            const count = parseInt(select.value, 10) || 0;
+            if (count <= 0) {
+                fieldsContainer.innerHTML = '';
+                fieldsContainer.classList.add('hidden');
+                return;
+            }
+
+            const sampleNames = [
+                'Ex: Ana Souza',
+                'Ex: Pedro Alves',
+                'Ex: Mariana Costa',
+                'Ex: Lucas Pereira'
+            ];
+
+            let html = '';
+            for (let i = 1; i <= count; i++) {
+                const placeholder = sampleNames[i - 1] || `Digite o nome completo do acompanhante ${i}`;
+                html += `
+                    <div>
+                        <label for="companionName_${i}" class="block text-xs font-semibold text-navy-800 uppercase tracking-wider mb-1.5">
+                            Nome Completo do Acompanhante ${i} *
+                        </label>
+                        <input
+                            type="text"
+                            id="companionName_${i}"
+                            data-companion-input="true"
+                            required
+                            placeholder="${placeholder}"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-navy-700 text-sm transition-shadow"
+                        >
+                    </div>
+                `;
+            }
+
+            fieldsContainer.innerHTML = html;
+            fieldsContainer.classList.remove('hidden');
         }
 
         function submitRSVP(event) {
@@ -616,187 +1392,497 @@
             const email = document.getElementById('rsvpEmail').value.trim();
             const phone = document.getElementById('rsvpPhone').value.trim();
             const attending = document.querySelector('input[name="attending"]:checked').value;
-            const guestCount = attending === 'sim' ? parseInt(document.getElementById('guestCount').value) : 0;
-            const guestNames = attending === 'sim' ? document.getElementById('guestNames').value.trim() : '';
+            const guestCount = attending === 'sim' ? parseInt(document.getElementById('guestCount').value, 10) : 0;
 
-            const newEntry = {
-                id: Date.now(),
-                date: new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'}),
+            let guestNames = '';
+            if (attending === 'sim' && guestCount > 0) {
+                const companionInputs = Array.from(document.querySelectorAll('#companionFieldsContainer input[data-companion-input="true"]'));
+                const namesList = companionInputs.map(input => input.value.trim()).filter(Boolean);
+
+                if (namesList.length < guestCount) {
+                    showToast('Por favor, preencha o nome completo de todos os acompanhantes.', 'error');
+                    return;
+                }
+                guestNames = namesList.join(', ');
+            }
+
+            const message = document.getElementById('rsvpMessage').value.trim();
+
+            if (!name || !email || !phone) {
+                showToast('Por favor, preencha todos os campos obrigatórios.', 'error');
+                return;
+            }
+
+            const rsvpEntry = {
+                id: 'rsvp-' + Date.now(),
                 name,
                 email,
                 phone,
                 attending,
                 guestCount,
-                guestNames
+                guestNames,
+                message,
+                createdAt: getFormattedNow()
             };
 
-            const currentData = getRSVPData();
-            currentData.push(newEntry);
-            saveRSVPData(currentData);
+            const list = getStoredList(STORAGE_KEYS.RSVPS);
+            list.unshift(rsvpEntry);
+            saveStoredList(STORAGE_KEYS.RSVPS, list);
 
             document.getElementById('rsvpForm').classList.add('hidden');
-            document.getElementById('rsvpSuccess').classList.remove('hidden');
+            const successBox = document.getElementById('rsvpSuccess');
+            const detail = document.getElementById('rsvpSuccessDetail');
+            if (attending === 'sim') {
+                const total = 1 + guestCount;
+                detail.textContent = `Obrigado, ${name}! Sua presença (${total} ${total === 1 ? 'pessoa' : 'pessoas'}) foi confirmada com sucesso.`;
+            } else {
+                detail.textContent = `Agradecemos por nos avisar, ${name}. Sentiremos sua falta, mas agradecemos o carinho!`;
+            }
+            successBox.classList.remove('hidden');
+            showToast('Confirmação de presença registrada!');
         }
 
         function resetRSVPForm() {
             document.getElementById('rsvpForm').reset();
-            document.getElementById('rsvpForm').classList.remove('hidden');
-            document.getElementById('rsvpSuccess').classList.add('hidden');
             toggleGuests(true);
+            document.getElementById('rsvpSuccess').classList.add('hidden');
+            document.getElementById('rsvpForm').classList.remove('hidden');
         }
 
-        // Modais de Presente e Vaquinha
-        function openGiftModal(title, price) {
-            document.getElementById('modalGiftTitle').innerText = title;
-            document.getElementById('modalGiftPrice').innerText = 'R$ ' + price;
-            document.getElementById('copyAlertGift').classList.add('hidden');
-            document.getElementById('giftModal').classList.remove('hidden');
+        // =====================================================================
+        // VITRINE DE PRESENTES
+        // =====================================================================
+        function renderGiftsGrid() {
+            const grid = document.getElementById('giftsGrid');
+            if (!grid) return;
+
+            grid.innerHTML = SITE_CONFIG.gifts.map(gift => `
+                <article class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-navy-100 flex flex-col justify-between group">
+                    <div>
+                        <div class="aspect-[4/3] w-full overflow-hidden bg-navy-100 relative">
+                            <img
+                                src="${gift.image}"
+                                onerror="this.onerror=null; this.src='https://placehold.co/800x600/102a43/b8cde0?text=${encodeURIComponent(gift.title)}';"
+                                alt="${gift.title}"
+                                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                            >
+                            <span class="absolute top-3.5 left-3.5 bg-navy-900/80 backdrop-blur-md text-serenity-200 text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full">
+                                ${gift.category}
+                            </span>
+                        </div>
+                        <div class="p-6 pb-3">
+                            <h3 class="font-serif text-xl font-bold text-navy-800 group-hover:text-serenity-600 transition-colors leading-snug">
+                                ${gift.title}
+                            </h3>
+                            <p class="text-xs sm:text-sm text-navy-600 mt-2 leading-relaxed">
+                                ${gift.description}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-3 mt-2 border-t border-navy-50 flex items-center justify-between gap-3">
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-wider text-navy-500 font-semibold">Valor</span>
+                            <span class="font-serif text-lg sm:text-xl font-bold text-navy-900">${formatBRL(gift.price)}</span>
+                        </div>
+                        <button
+                            type="button"
+                            onclick="openGiftModal('${gift.id}')"
+                            class="bg-navy-800 hover:bg-navy-900 text-white font-semibold py-2.5 px-5 rounded-full shadow-sm hover:shadow-md transition-all flex items-center space-x-2 text-xs uppercase tracking-wider"
+                        >
+                            <i class="fa-solid fa-gift text-serenity-300"></i>
+                            <span>Presentear</span>
+                        </button>
+                    </div>
+                </article>
+            `).join('');
         }
 
-        function closeGiftModal() {
-            document.getElementById('giftModal').classList.add('hidden');
+        function copyTextToClipboard(text, successMsg) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            tempInput.style.position = 'fixed';
+            tempInput.style.opacity = '0';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showToast(successMsg);
+            } catch (err) {
+                showToast('Não foi possível copiar automaticamente.', 'error');
+            }
+            document.body.removeChild(tempInput);
         }
 
-        function openVaquinhaModal() {
-            document.getElementById('vaquinhaModal').classList.remove('hidden');
+        function copyPixKey() {
+            const codeToCopy = SITE_CONFIG.pixCodes[currentPaymentState.qrKey] || SITE_CONFIG.pixCodes['livre'];
+            copyTextToClipboard(codeToCopy, 'Código PIX Copia e Cola copiado!');
+            const btn = document.getElementById('copyPixBtn');
+            if (btn) {
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check"></i><span>Copiado!</span>';
+                btn.classList.remove('bg-serenity-500', 'hover:bg-serenity-600');
+                btn.classList.add('bg-green-600');
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('bg-green-600');
+                    btn.classList.add('bg-serenity-500', 'hover:bg-serenity-600');
+                }, 2200);
+            }
         }
 
-        function closeVaquinhaModal() {
-            document.getElementById('vaquinhaModal').classList.add('hidden');
+        function confirmGiftPayment() {
+            if (currentPaymentState.amount <= 0) {
+                showToast('Por favor, informe um valor válido maior que R$ 0,00.', 'error');
+                return;
+            }
+
+            const senderName = document.getElementById('giftSenderName').value.trim() || 'Convidado Especial';
+            const note = document.getElementById('giftSenderNote').value.trim();
+
+            const entry = {
+                id: 'gift-tx-' + Date.now(),
+                senderName,
+                giftTitle: currentPaymentState.title,
+                amount: currentPaymentState.amount,
+                method: 'PIX',
+                note,
+                createdAt: getFormattedNow()
+            };
+
+            const giftsList = getStoredList(STORAGE_KEYS.GIFTS);
+            giftsList.unshift(entry);
+            saveStoredList(STORAGE_KEYS.GIFTS, giftsList);
+
+            document.getElementById('paymentModalBody').classList.add('hidden');
+            document.getElementById('paymentSuccessSummary').textContent =
+                `${senderName}, registramos seu presente "${currentPaymentState.title}" no valor de ${formatBRL(currentPaymentState.amount)} via PIX. Matheus & Mayara agradecem de coração!`;
+            document.getElementById('paymentModalSuccess').classList.remove('hidden');
+
+            showToast('Presente via PIX registrado com sucesso!');
         }
 
-        function openCardModal() {
-            document.getElementById('cardModal').classList.remove('hidden');
+        // =====================================================================
+        // LIVRO DE RECADOS / MENSAGENS AOS NOIVOS
+        // =====================================================================
+        function submitGuestMessage(event) {
+            event.preventDefault();
+
+            const author = document.getElementById('msgAuthorName').value.trim();
+            const relation = document.getElementById('msgAuthorRelation').value.trim();
+            const body = document.getElementById('msgBody').value.trim();
+
+            if (!author || !body) {
+                showToast('Por favor, preencha seu nome e sua mensagem.', 'error');
+                return;
+            }
+
+            const msgEntry = {
+                id: 'msg-' + Date.now(),
+                author,
+                relation: relation || 'Convidado(a)',
+                body,
+                createdAt: getFormattedNow()
+            };
+
+            const list = getStoredList(STORAGE_KEYS.MESSAGES);
+            list.unshift(msgEntry);
+            saveStoredList(STORAGE_KEYS.MESSAGES, list);
+
+            document.getElementById('guestMessageForm').classList.add('hidden');
+            document.getElementById('guestMessageSuccess').classList.remove('hidden');
+            showToast('Mensagem enviada para Matheus & Mayara!');
         }
 
-        function closeCardModal() {
-            document.getElementById('cardModal').classList.add('hidden');
+        function resetGuestMessageForm() {
+            document.getElementById('guestMessageForm').reset();
+            document.getElementById('guestMessageSuccess').classList.add('hidden');
+            document.getElementById('guestMessageForm').classList.remove('hidden');
         }
 
-        function submitCardPayment(e) {
-            e.preventDefault();
-            alert('Obrigado pela sua contribuição! Seu pagamento com cartão foi simulado com sucesso.');
-            closeCardModal();
-        }
-
-        function copyPix(inputId) {
-            const copyText = document.getElementById(inputId);
-            copyText.select();
-            document.execCommand('copy');
-            
-            const alertElem = inputId === 'pixKeyGift' ? document.getElementById('copyAlertGift') : document.getElementById('copyAlertFree');
-            alertElem.classList.remove('hidden');
-            setTimeout(() => {
-                alertElem.classList.add('hidden');
-            }, 3000);
-        }
-
-        // Admin Modal
+        // =====================================================================
+        // PAINEL DOS NOIVOS (MODAL ADMINISTRATIVO + CSV)
+        // =====================================================================
         function openAdminModal() {
-            document.getElementById('adminModal').classList.remove('hidden');
+            const modal = document.getElementById('adminModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            if (isAdminAuthenticated) {
+                document.getElementById('adminLoginView').classList.add('hidden');
+                document.getElementById('adminDashboardView').classList.remove('hidden');
+                renderAdminDashboard();
+            } else {
+                document.getElementById('adminLoginError').classList.add('hidden');
+                document.getElementById('adminPasswordInput').value = '';
+                document.getElementById('adminLoginView').classList.remove('hidden');
+                document.getElementById('adminDashboardView').classList.add('hidden');
+            }
         }
 
         function closeAdminModal() {
-            document.getElementById('adminModal').classList.add('hidden');
+            const modal = document.getElementById('adminModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
 
-        function checkAdminPassword() {
-            const pass = document.getElementById('adminPassword').value;
-            if (pass === '1234') {
-                document.getElementById('adminLogin').classList.add('hidden');
-                document.getElementById('adminDashboard').classList.remove('hidden');
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const password = document.getElementById('adminPasswordInput').value.trim();
+            if (password === SITE_CONFIG.adminPassword) {
+                isAdminAuthenticated = true;
+                document.getElementById('adminLoginError').classList.add('hidden');
+                document.getElementById('adminLoginView').classList.add('hidden');
+                document.getElementById('adminDashboardView').classList.remove('hidden');
                 renderAdminDashboard();
+                showToast('Bem-vindos ao Painel dos Noivos!');
             } else {
-                document.getElementById('adminError').classList.remove('hidden');
+                document.getElementById('adminLoginError').classList.remove('hidden');
             }
         }
 
         function logoutAdmin() {
-            document.getElementById('adminDashboard').classList.add('hidden');
-            document.getElementById('adminLogin').classList.remove('hidden');
-            document.getElementById('adminPassword').value = '';
-            document.getElementById('adminError').classList.add('hidden');
+            isAdminAuthenticated = false;
+            closeAdminModal();
+            showToast('Sessão encerrada com segurança.');
         }
 
-        function renderAdminDashboard() {
-            const rsvps = getRSVPData();
-            const tbody = document.getElementById('adminTableBody');
-            tbody.innerHTML = '';
+        function switchAdminTab(tabName) {
+            const tabs = {
+                rsvp: { btn: 'adminTabRsvp', panel: 'adminSubRsvp' },
+                gifts: { btn: 'adminTabGifts', panel: 'adminSubGifts' },
+                messages: { btn: 'adminTabMessages', panel: 'adminSubMessages' }
+            };
 
-            let confirmed = 0;
-            let declined = 0;
-            let totalPeople = 0;
-
-            rsvps.forEach((item) => {
-                if (item.attending === 'sim') {
-                    confirmed++;
-                    totalPeople += (1 + parseInt(item.guestCount || 0));
+            Object.keys(tabs).forEach(key => {
+                const btn = document.getElementById(tabs[key].btn);
+                const panel = document.getElementById(tabs[key].panel);
+                if (key === tabName) {
+                    btn.className = 'px-4 py-2 rounded-xl text-xs font-semibold bg-navy-800 text-white transition-all';
+                    panel.classList.remove('hidden');
                 } else {
-                    declined++;
+                    btn.className = 'px-4 py-2 rounded-xl text-xs font-semibold bg-navy-50 text-navy-700 hover:bg-navy-100 transition-all';
+                    panel.classList.add('hidden');
                 }
+            });
+        }
 
-                const tr = document.createElement('tr');
-                tr.className = 'border-b hover:bg-gray-50';
-                tr.innerHTML = `
-                    <td class="p-3 text-gray-500">${item.date}</td>
-                    <td class="p-3 font-semibold">${item.name}</td>
-                    <td class="p-3">${item.phone}<br><span class="text-gray-400">${item.email}</span></td>
-                    <td class="p-3">
-                        <span class="px-2 py-1 rounded-full text-xs font-semibold ${item.attending === 'sim' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
-                            ${item.attending === 'sim' ? 'Confirmado' : 'Recusado'}
-                        </span>
-                    </td>
-                    <td class="p-3">${item.attending === 'sim' ? `${item.guestCount} (${item.guestNames || 'Nenhum'})` : '-'}</td>
-                    <td class="p-3 text-center">
-                        <button onclick="deleteEntry(${item.id})" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
+        function setRsvpFilter(filter) {
+            currentRsvpFilter = filter;
+            const buttons = {
+                all: document.getElementById('filterAllBtn'),
+                sim: document.getElementById('filterSimBtn'),
+                nao: document.getElementById('filterNaoBtn')
+            };
+
+            Object.keys(buttons).forEach(key => {
+                if (key === filter) {
+                    buttons[key].className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-navy-800 text-white';
+                } else {
+                    buttons[key].className = 'px-3.5 py-1.5 rounded-full text-xs font-semibold bg-navy-50 text-navy-700 hover:bg-navy-100';
+                }
             });
 
-            document.getElementById('metricTotal').innerText = rsvps.length;
-            document.getElementById('metricConfirmed').innerText = confirmed;
-            document.getElementById('metricDeclined').innerText = declined;
-            document.getElementById('metricTotalPeople').innerText = totalPeople;
-        }
-
-        function deleteEntry(id) {
-            let data = getRSVPData();
-            data = data.filter(item => item.id !== id);
-            saveRSVPData(data);
             renderAdminDashboard();
         }
 
-        function exportCSV() {
-            const data = getRSVPData();
-            if (data.length === 0) {
-                alert('Não há confirmações cadastradas.');
-                return;
-            }
+        function deleteRsvpEntry(id) {
+            const list = getStoredList(STORAGE_KEYS.RSVPS).filter(item => item.id !== id);
+            saveStoredList(STORAGE_KEYS.RSVPS, list);
+            renderAdminDashboard();
+            showToast('Registro removido da lista.');
+        }
 
-            let csvContent = "data:text/csv;charset=utf-8,Data,Nome,Email,Telefone,Status,Qtd Acompanhantes,Nomes Acompanhantes\n";
+        function renderAdminDashboard() {
+            const rsvps = getStoredList(STORAGE_KEYS.RSVPS);
+            const gifts = getStoredList(STORAGE_KEYS.GIFTS);
+            const messages = getStoredList(STORAGE_KEYS.MESSAGES);
 
-            data.forEach(item => {
-                const row = [
-                    `"${item.date}"`,
-                    `"${item.name}"`,
-                    `"${item.email}"`,
-                    `"${item.phone}"`,
-                    `"${item.attending === 'sim' ? 'Confirmado' : 'Recusado'}"`,
-                    `"${item.guestCount}"`,
-                    `"${item.guestNames || ''}"`
-                ].join(",");
-                csvContent += row + "\n";
+            // Cálculo das métricas
+            const confirmedList = rsvps.filter(r => r.attending === 'sim');
+            const declinedList = rsvps.filter(r => r.attending === 'nao');
+            const totalConfirmedPeople = confirmedList.reduce((sum, r) => sum + 1 + (Number(r.guestCount) || 0), 0);
+            const totalGiftsAmount = gifts.reduce((sum, g) => sum + (Number(g.amount) || 0), 0);
+
+            document.getElementById('statTotalRsvps').textContent = rsvps.length;
+            document.getElementById('statConfirmedGroups').textContent = confirmedList.length;
+            document.getElementById('statTotalPeople').textContent = totalConfirmedPeople;
+            document.getElementById('statDeclined').textContent = declinedList.length;
+            document.getElementById('statTotalGifts').textContent = formatBRL(totalGiftsAmount);
+            document.getElementById('statTotalMessages').textContent = messages.length;
+
+            // Renderiza tabela de RSVPs com filtro e busca
+            const searchQuery = (document.getElementById('rsvpSearchInput')?.value || '').toLowerCase().trim();
+            const filteredRsvps = rsvps.filter(item => {
+                const matchesFilter = currentRsvpFilter === 'all' || item.attending === currentRsvpFilter;
+                const matchesSearch = !searchQuery ||
+                    item.name.toLowerCase().includes(searchQuery) ||
+                    (item.email && item.email.toLowerCase().includes(searchQuery)) ||
+                    (item.guestNames && item.guestNames.toLowerCase().includes(searchQuery));
+                return matchesFilter && matchesSearch;
             });
 
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "confirmacoes_matheus_mayara.csv");
+            const rsvpTbody = document.getElementById('adminRsvpTableBody');
+            if (filteredRsvps.length === 0) {
+                rsvpTbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="py-8 text-center text-navy-500">Nenhum registro encontrado para este filtro.</td>
+                    </tr>
+                `;
+            } else {
+                rsvpTbody.innerHTML = filteredRsvps.map(item => {
+                    const isYes = item.attending === 'sim';
+                    const statusBadge = isYes
+                        ? '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-green-100 text-green-800">Confirmado</span>'
+                        : '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-red-100 text-red-800">Não irá</span>';
+
+                    const companionsText = isYes
+                        ? (item.guestCount > 0
+                            ? `<strong>+${item.guestCount}</strong> (${item.guestNames || 'Sem nomes informados'})`
+                            : 'Somente titular')
+                        : '—';
+
+                    return `
+                        <tr class="hover:bg-navy-50/50 transition-colors">
+                            <td class="py-3 px-4 font-semibold text-navy-900">
+                                ${item.name}
+                                <span class="block text-[10px] font-normal text-navy-400">${item.createdAt || ''}</span>
+                            </td>
+                            <td class="py-3 px-4 text-navy-700">
+                                <div>${item.phone}</div>
+                                <div class="text-[11px] text-navy-500">${item.email}</div>
+                            </td>
+                            <td class="py-3 px-4">${statusBadge}</td>
+                            <td class="py-3 px-4 text-navy-700">${companionsText}</td>
+                            <td class="py-3 px-4 text-navy-600 max-w-xs truncate" title="${item.message || ''}">${item.message || '—'}</td>
+                            <td class="py-3 px-4 text-right">
+                                <button type="button" onclick="deleteRsvpEntry('${item.id}')" title="Remover registro" class="text-red-600 hover:text-red-800 p-1.5 rounded-lg hover:bg-red-50 transition-colors">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            // Renderiza tabela de Presentes
+            const giftsTbody = document.getElementById('adminGiftsTableBody');
+            if (gifts.length === 0) {
+                giftsTbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-navy-500">Nenhum presente registrado ainda.</td></tr>`;
+            } else {
+                giftsTbody.innerHTML = gifts.map(g => `
+                    <tr class="hover:bg-navy-50/50">
+                        <td class="py-3 px-4 font-semibold text-navy-900">${g.senderName}</td>
+                        <td class="py-3 px-4 text-navy-700">${g.giftTitle}</td>
+                        <td class="py-3 px-4 font-semibold text-green-700">${formatBRL(g.amount)}</td>
+                        <td class="py-3 px-4"><span class="px-2 py-0.5 rounded-md bg-navy-100 text-navy-800 font-medium">${g.method}</span></td>
+                        <td class="py-3 px-4 text-navy-600">${g.note || '—'}</td>
+                        <td class="py-3 px-4 text-navy-500">${g.createdAt || ''}</td>
+                    </tr>
+                `).join('');
+            }
+
+            // Renderiza Mensagens do Livro de Recados
+            const messagesContainer = document.getElementById('adminSubMessages');
+            if (messages.length === 0) {
+                messagesContainer.innerHTML = `<p class="py-8 text-center text-xs text-navy-500">Nenhuma mensagem no livro de recados ainda.</p>`;
+            } else {
+                messagesContainer.innerHTML = messages.map(m => `
+                    <div class="bg-rustic-50 p-4 rounded-2xl border border-rustic-200 space-y-1.5">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-serif font-bold text-navy-800 text-sm">${m.author}</span>
+                                <span class="text-[11px] text-serenity-600 ml-2">&bull; ${m.relation}</span>
+                            </div>
+                            <span class="text-[10px] text-navy-400">${m.createdAt || ''}</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-navy-700 leading-relaxed italic">“${m.body}”</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Exportação do Relatório Completo em CSV compatível com Excel
+        function exportReportCSV() {
+            const rsvps = getStoredList(STORAGE_KEYS.RSVPS);
+            const separator = ';';
+            const headers = [
+                'Nome Completo',
+                'E-mail',
+                'Telefone',
+                'Status Confirmacao',
+                'Qtd Acompanhantes',
+                'Total Pessoas',
+                'Nomes dos Acompanhantes',
+                'Mensagem',
+                'Data Registro'
+            ];
+
+            const rows = rsvps.map(r => {
+                const isYes = r.attending === 'sim';
+                const totalPeople = isYes ? (1 + (Number(r.guestCount) || 0)) : 0;
+                const cols = [
+                    r.name,
+                    r.email,
+                    r.phone,
+                    isYes ? 'Confirmado' : 'Nao ira',
+                    isYes ? (r.guestCount || 0) : 0,
+                    totalPeople,
+                    r.guestNames || '',
+                    (r.message || '').replace(/[\r\n]+/g, ' '),
+                    r.createdAt || ''
+                ];
+                return cols.map(val => `"${String(val).replace(/"/g, '""')}"`).join(separator);
+            });
+
+            // Adiciona BOM UTF-8 (\uFEFF) para acentuação perfeita no Excel
+            const csvContent = '\uFEFF' + [headers.join(separator), ...rows].join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `relatorio_casamento_matheus_mayara_${SITE_VERSION}.csv`);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+
+            showToast('Relatório CSV exportado com sucesso!');
         }
+
+        // Download direto do próprio arquivo index.html consolidado para publicação no GitHub Pages
+        function downloadIndexHtmlFile() {
+            const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'index.html');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+
+            showToast(`Arquivo index.html (${SITE_VERSION}) baixado com sucesso!`);
+        }
+
+        // Fecha modais ao pressionar ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePaymentModal();
+                closeAdminModal();
+            }
+        });
+
+        // Inicializa tudo ao carregar a página
+        window.addEventListener('DOMContentLoaded', () => {
+            initSeedData();
+            renderGiftsGrid();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
     </script>
 </body>
 </html>
